@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(**/.env*)",
+      "Write(**/.env*)",
+      "Edit(**/.env*)"
+    ],
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Bash(bun run lint:*)",
+      "Bash(bun run build:*)",
+      "WebSearch",
+      "Bash(bun add:*)",
+      "Bash(bun run:*)"
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
+  }
+}

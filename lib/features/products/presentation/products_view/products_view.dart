@@ -157,6 +157,7 @@ class _ProductsViewState extends State<ProductsView>
 
     for (var entry in groupedDesigns.entries) {
       final designsCount = entry.value.length;
+      if (designsCount == 0) continue;
       final itemsPerThisRow = itemsPerRowEstimate.clamp(1, designsCount);
       if (itemsPerThisRow > itemsPerRow) itemsPerRow = itemsPerThisRow;
 

@@ -12,6 +12,9 @@ To build the generated parts of immutable Freezed model classes, the go router r
 
 (You might need to run `flutter pub global activate build_runner` prior to the file generation.)
 
+### Run app locally
+`export PATH="$PATH:/Users/fisukala/develop/flutter/bin" && flutter run -d chrome`
+
 ### Running tests
 
 #### Unit and widget tests

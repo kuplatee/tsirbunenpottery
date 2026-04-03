@@ -115,7 +115,9 @@ class ProductsRepository {
     final detailsRaw = data[fieldName] as Map<String, dynamic>;
     final Map<Language, Map<String, String>> details = detailsRaw.map(
       (key, value) {
-        final parsedMap = jsonDecode(value as String) as Map<String, dynamic>;
+        final parsedMap = value is String
+            ? jsonDecode(value) as Map<String, dynamic>
+            : (value as Map).cast<String, dynamic>();
         final convertedMap = parsedMap.map(
           (innerKey, innerValue) => MapEntry(innerKey, innerValue as String),
         );
@@ -137,8 +139,8 @@ class ProductsRepository {
   ) {
     final refs = data[fieldName] as List<dynamic>;
     final List<String> refIds = refs.map((e) {
-      final ref = e as DocumentReference;
-      return ref.id;
+      if (e is DocumentReference) return e.id;
+      return e as String;
     }).toList();
 
     List<String> existingIds = [];
@@ -157,8 +159,8 @@ class ProductsRepository {
   String? _idOfRef<T>(
       Map<String, dynamic> documentMap, List<T> items, String fieldName) {
     if (documentMap[fieldName] != null) {
-      final ref = documentMap[fieldName] as DocumentReference;
-      final refId = ref.id;
+      final value = documentMap[fieldName];
+      final refId = value is DocumentReference ? value.id : value as String;
 
       final exists = items.any((item) {
         final itemId = (item as dynamic).id;
