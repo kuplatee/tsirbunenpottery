@@ -70,9 +70,6 @@ class _ProductsSubViewState extends State<ProductsSubView>
     final horizontalAlignment =
         isNarrow ? CrossAxisAlignment.center : CrossAxisAlignment.start;
 
-    print(
-        'size: $size, availableWidth: ${widget.gridParams.availableWidth}, isNarrow: $isNarrow');
-
     return Column(
       crossAxisAlignment: horizontalAlignment,
       children: [

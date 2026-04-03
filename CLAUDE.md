@@ -3,6 +3,8 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 We are building the app described in @SPEC.md and you should read that file only when specifically asked.
+The codebase structure and patterns are documented in @ARCHITECTURE.md — read it before exploring the repo.
+Always update @ARCHITECTURE.md when making structural changes (new features, blocs, routes, patterns).
 
 Treat every decision as if this app will scale into a large, complex, production-grade system. Apply proper architecture, clean boundaries, and no shortcuts — even when a simpler approach would work for the current scope.
 
@@ -25,6 +27,13 @@ Do not suggest to commit on your own. I will ask you to commit when needed.
 ## Security
 
 **NEVER** read or write `.env` files. Do not access, display, or modify any `.env*` file contents.
+
+## Commands
+- Run tests: `flutter test`
+- Run app (web, dev): `flutter run -d chrome`
+- Analyze: `flutter analyze`
+- Code generation (freezed, go_router): `dart run build_runner build --delete-conflicting-outputs`
+- Deploy: automatic via GitHub push to `main` → Netlify
 
 ## Communication Style
 
