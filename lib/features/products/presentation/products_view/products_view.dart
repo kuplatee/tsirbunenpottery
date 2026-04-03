@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_bloc.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_state.dart';
+import 'package:madmudmobile/app/language_bloc/language_bloc.dart';
+import 'package:madmudmobile/app/language_bloc/language_state.dart';
 import 'package:madmudmobile/features/products/domain/bloc/products_bloc.dart';
 import 'package:madmudmobile/features/products/domain/bloc/products_state.dart';
 import 'package:madmudmobile/features/products/domain/models/design/design.dart';
@@ -43,9 +43,9 @@ class _ProductsViewState extends State<ProductsView>
   Widget build(BuildContext context) {
     return PageBase(
       scrollController: scrollController,
-      pageBody: BlocBuilder<GeneralStateBloc, GeneralState>(builder: (
+      pageBody: BlocBuilder<LanguageBloc, LanguageState>(builder: (
         BuildContext context,
-        GeneralState state,
+        LanguageState state,
       ) {
         final language = state.language;
 

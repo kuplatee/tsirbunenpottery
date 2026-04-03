@@ -1,8 +1,10 @@
 import 'package:get_it/get_it.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_bloc.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_event.dart';
+import 'package:madmudmobile/app/language_bloc/language_bloc.dart';
 import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_bloc.dart';
 import 'package:madmudmobile/common_cloud_service/common_cloud_service.dart';
+import 'package:madmudmobile/features/home/domain/bloc/home_bloc.dart';
+import 'package:madmudmobile/features/home/domain/bloc/home_event.dart';
+import 'package:madmudmobile/features/home/repository/home_repository.dart';
 import 'package:madmudmobile/features/products/domain/bloc/products_bloc.dart';
 import 'package:madmudmobile/features/products/domain/bloc/products_event.dart';
 import 'package:madmudmobile/features/products/repository/products_repository.dart';
@@ -15,8 +17,11 @@ final getIt = GetIt.instance;
 void prepareBlocs() {
   final cloudService = FirestoreCloudService();
 
-  final generalStateBloc = GeneralStateBloc(cloudService);
-  generalStateBloc.add(FetchHomePageImageFileName());
+  final languageBloc = LanguageBloc();
+
+  final homeRepository = HomeRepository(cloudService);
+  final homeBloc = HomeBloc(homeRepository);
+  homeBloc.add(FetchHomePageImageFileName());
 
   final productsRepository = ProductsRepository(cloudService);
   final productsBloc = ProductsBloc(productsRepository);
@@ -24,7 +29,8 @@ void prepareBlocs() {
 
   final scrollAndRouteBloc = ScrollAndRouteBloc(scrollPositions: {});
 
-  getIt.registerSingleton<GeneralStateBloc>(generalStateBloc);
+  getIt.registerSingleton<LanguageBloc>(languageBloc);
+  getIt.registerSingleton<HomeBloc>(homeBloc);
   getIt.registerSingleton<ProductsBloc>(productsBloc);
   getIt.registerSingleton<ScrollAndRouteBloc>(scrollAndRouteBloc);
 }

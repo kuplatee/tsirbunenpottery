@@ -99,7 +99,7 @@ class _PhotoWithFallbackState extends State<PhotoWithFallback>
                         center: Alignment.center,
                         radius: 0.5,
                         colors: [
-                          colors.surface.withOpacity(0),
+                          colors.surface.withValues(alpha: 0),
                           colors.surface,
                         ],
                         stops: [0.2, 1.0],

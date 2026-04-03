@@ -63,6 +63,7 @@ class _NoImageIconPlaceholderState extends State<NoImageIconPlaceholder>
     // Note: We need to do this async trick to get hold of the context
     // to be able to access the color scheme of our app's theme.
     Future.delayed(Duration.zero, () {
+      if (!mounted) return;
       final colors = Theme.of(context).colorScheme;
 
       _animation = ColorTween(

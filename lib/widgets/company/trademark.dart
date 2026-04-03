@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/localization/translation.dart';
 
 const double logoDefaultSize = 40.0; //36.0;
 const double tradeNameDefaultSize = 7.0;

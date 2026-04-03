@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_bloc.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_state.dart';
+import 'package:madmudmobile/features/home/domain/bloc/home_bloc.dart';
+import 'package:madmudmobile/features/home/domain/bloc/home_state.dart';
 import 'package:madmudmobile/features/contact/presentation/contact_view/contact_form.dart';
 import 'package:madmudmobile/features/contact/presentation/contact_view/photo_and_info.dart';
 import 'package:madmudmobile/widgets/footer/footer.dart';
@@ -16,8 +16,8 @@ class ContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageBase(
-      pageBody: BlocBuilder<GeneralStateBloc, GeneralState>(
-          builder: (BuildContext context, GeneralState state) {
+      pageBody: BlocBuilder<HomeBloc, HomeState>(
+          builder: (BuildContext context, HomeState state) {
         final width = MediaQuery.of(context).size.width;
         final isHorizontal = width > showPhotoBreakpoint;
         final imageFileName = state.homePageImageFileName;

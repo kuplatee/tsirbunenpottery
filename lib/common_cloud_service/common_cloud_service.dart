@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:madmudmobile/common_cloud_service/cloud_service.dart';
 
 class FirestoreCloudService implements CloudService {
@@ -18,7 +19,7 @@ class FirestoreCloudService implements CloudService {
       final doc = docs.docs.firstWhere((d) => d.id == documentId);
       return {'id': doc.id, ...doc.data()};
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
       return null;
     }
   }
@@ -34,7 +35,7 @@ class FirestoreCloudService implements CloudService {
           .map((doc) => {'id': doc.id, ...doc.data()})
           .toList();
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
       return [];
     }
   }

@@ -22,7 +22,7 @@ lib/
 
   app/
     blocs/blocs.dart               # GetIt setup — registers all singleton blocs
-    general_state_bloc/            # App-wide state: language, home page image
+    language_bloc/                 # App-wide UI state: runtime language toggle
     scroll_and_route_bloc/         # Scroll positions keyed by route
     router/
       route_enum.dart              # RouteEnum with path() and pageName() extensions
@@ -76,7 +76,7 @@ All features must follow this structure:
 - `pages/` is **always required** — even for static features
 - `{feature}_view/` is added when there are reusable sub-widgets beyond the page itself
 - `domain/bloc/` and `repository/` are added only when the feature has its own state or data layer
-- Features that read from global blocs (e.g. `GeneralStateBloc`) do **not** need their own domain layer
+- Features that read from global blocs (e.g. `LanguageBloc`) do **not** need their own domain layer
 
 ## Routes (current)
 | RouteEnum | Path | Notes |
@@ -92,7 +92,8 @@ Commented-out (not active): `designs`, `story`
 ## Blocs
 | Bloc | Registered in | Responsibility |
 |---|---|---|
-| `GeneralStateBloc` | getIt singleton | Language toggle, home page image filename |
+| `LanguageBloc` | getIt singleton | Runtime language toggle (pure UI state) |
+| `HomeBloc` | getIt singleton | Fetch home page image filename from Firestore |
 | `ProductsBloc` | getIt singleton | Fetch and hold all product data |
 | `ScrollAndRouteBloc` | getIt singleton | Persist scroll positions per route |
 

@@ -56,7 +56,7 @@ class ContactEmailWithCopyOption extends StatelessWidget {
 
   BoxDecoration _tooltipDecoration(ColorScheme colors) {
     return BoxDecoration(
-      color: colors.primary.withOpacity(0.8),
+      color: colors.primary.withValues(alpha: 0.8),
       borderRadius: BorderRadius.circular(25.0),
     );
   }

@@ -59,7 +59,7 @@ class _ContactFormState extends State<ContactForm> {
               child: ElevatedButton(
                 onPressed: _onSubmit,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: colors.primary.withOpacity(0.8),
+                  backgroundColor: colors.primary.withValues(alpha: 0.8),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(borderRadius),
                   ),

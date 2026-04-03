@@ -20,7 +20,7 @@ class ProgressIndicatorPageOverlay extends StatelessWidget {
         child,
         if (isSubmitting)
           Container(
-            color: Colors.black.withOpacity(opacity),
+            color: Colors.black.withValues(alpha: opacity),
             child: const Center(
               child: ProgressIndicatorXL(),
             ),

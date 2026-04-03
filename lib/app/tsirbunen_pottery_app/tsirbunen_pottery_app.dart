@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:madmudmobile/app/blocs/blocs.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_bloc.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_state.dart';
+import 'package:madmudmobile/app/language_bloc/language_bloc.dart';
+import 'package:madmudmobile/app/language_bloc/language_state.dart';
 import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_bloc.dart';
+import 'package:madmudmobile/features/home/domain/bloc/home_bloc.dart';
 import 'package:madmudmobile/features/products/domain/bloc/products_bloc.dart';
-import 'package:madmudmobile/localization/languages.dart';
 import 'package:madmudmobile/localization/app_locale.dart';
+import 'package:madmudmobile/localization/languages.dart';
 import 'package:madmudmobile/app/router/route_controller.dart';
 import 'package:madmudmobile/localization/utils.dart';
 import 'package:madmudmobile/theme/app_theme.dart';
@@ -20,12 +21,13 @@ class TsirbunenPotteryApp extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider.value(value: getIt.get<GeneralStateBloc>()),
+        BlocProvider.value(value: getIt.get<LanguageBloc>()),
+        BlocProvider.value(value: getIt.get<HomeBloc>()),
         BlocProvider.value(value: getIt.get<ProductsBloc>()),
         BlocProvider.value(value: getIt.get<ScrollAndRouteBloc>()),
       ],
-      child: BlocBuilder<GeneralStateBloc, GeneralState>(
-        builder: (BuildContext context, GeneralState state) {
+      child: BlocBuilder<LanguageBloc, LanguageState>(
+        builder: (BuildContext context, LanguageState state) {
           final locale = state.language.toLocale();
 
           return MaterialApp.router(

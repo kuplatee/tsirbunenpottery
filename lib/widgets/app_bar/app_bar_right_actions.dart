@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_bloc.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_event.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_state.dart';
+import 'package:madmudmobile/app/language_bloc/language_bloc.dart';
+import 'package:madmudmobile/app/language_bloc/language_event.dart';
+import 'package:madmudmobile/app/language_bloc/language_state.dart';
 import 'package:madmudmobile/localization/languages.dart';
 import 'package:madmudmobile/widgets/action_button/action_button.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
@@ -12,8 +12,8 @@ class AppBarRightActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GeneralStateBloc, GeneralState>(
-      builder: (BuildContext context, GeneralState state) {
+    return BlocBuilder<LanguageBloc, LanguageState>(
+      builder: (BuildContext context, LanguageState state) {
         final currentLanguage = state.language;
 
         return Row(
@@ -39,6 +39,6 @@ class AppBarRightActions extends StatelessWidget {
   }
 
   _onChangeLanguage(BuildContext context, Language language) {
-    context.read<GeneralStateBloc>().add(ChangeLanguage(language));
+    context.read<LanguageBloc>().add(ChangeLanguage(language));
   }
 }
