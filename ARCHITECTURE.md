@@ -36,14 +36,14 @@ lib/
 
   features/
     {feature}/
-      domain/
+      presentation/
+        pages/                     # Required: thin route-connected page widgets (one per route)
+        {feature}_view/            # Add when presentation has >1 non-trivial sub-component
+      domain/                      # Add when feature has local state management
         bloc/                      # BLoC (events, state, bloc, utils)
         models/                    # Freezed domain models
-      presentation/
-        pages/                     # Top-level page widgets (one per route)
-        {feature}_view/            # Sub-views / layout widgets for that page
-      repository/
-        products_repository.dart   # Firestore queries + maps documents to domain models
+      repository/                  # Add when feature fetches its own data
+        {feature}_repository.dart  # Firestore queries + maps documents to domain models
 
   localization/
     translation.dart               # Translation enum (all string keys)
@@ -68,6 +68,15 @@ lib/
     horizontal_navigation/ hover_detector/ page_base/
     photo_with_fallback/ progress_indicator/
 ```
+
+## Feature architectural contract
+
+All features must follow this structure:
+
+- `pages/` is **always required** — even for static features
+- `{feature}_view/` is added when there are reusable sub-widgets beyond the page itself
+- `domain/bloc/` and `repository/` are added only when the feature has its own state or data layer
+- Features that read from global blocs (e.g. `GeneralStateBloc`) do **not** need their own domain layer
 
 ## Routes (current)
 | RouteEnum | Path | Notes |

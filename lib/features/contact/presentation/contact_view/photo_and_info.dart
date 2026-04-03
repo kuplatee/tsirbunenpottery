@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/features/contact/presentation/contact_email_with_copy_option.dart';
+import 'package:madmudmobile/features/contact/presentation/contact_view/contact_email_with_copy_option.dart';
 import 'package:madmudmobile/localization/app_locale.dart';
 import 'package:madmudmobile/localization/translation.dart';
 import 'package:madmudmobile/utils/constants.dart';

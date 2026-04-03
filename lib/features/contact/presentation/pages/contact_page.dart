@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:madmudmobile/app/general_state_bloc/general_state_bloc.dart';
 import 'package:madmudmobile/app/general_state_bloc/general_state_state.dart';
-import 'package:madmudmobile/features/contact/presentation/contact_form.dart';
-import 'package:madmudmobile/features/contact/presentation/photo_and_info.dart';
+import 'package:madmudmobile/features/contact/presentation/contact_view/contact_form.dart';
+import 'package:madmudmobile/features/contact/presentation/contact_view/photo_and_info.dart';
 import 'package:madmudmobile/widgets/footer/footer.dart';
 import 'package:madmudmobile/widgets/page_base/page_base.dart';
 

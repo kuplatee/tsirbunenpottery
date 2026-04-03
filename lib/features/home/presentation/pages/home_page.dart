@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:madmudmobile/app/general_state_bloc/general_state_bloc.dart';
 import 'package:madmudmobile/app/general_state_bloc/general_state_state.dart';
-import 'package:madmudmobile/features/home/presentation/home_page_text_content.dart';
+import 'package:madmudmobile/features/home/presentation/pages/home_page_text_content.dart';
 import 'package:madmudmobile/utils/constants.dart';
 import 'package:madmudmobile/widgets/page_base/page_base.dart';
 import 'package:madmudmobile/widgets/photo_with_fallback/photo_with_fallback.dart';
