@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:madmudmobile/app/blocs/bloc_status.dart';
 import 'package:madmudmobile/features/home/domain/bloc/home_event.dart';
 import 'package:madmudmobile/features/home/domain/bloc/home_state.dart';
 import 'package:madmudmobile/features/home/repository/home_repository.dart';
@@ -19,8 +20,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       if (fileName != null) {
         emit(state.copyWith(newHomePageImageFileName: fileName));
       }
-    } catch (_) {
-      // Keep current state; image is optional (falls back to placeholder)
+    } catch (e) {
+      emit(state.copyWith(
+        newStatus: BlocStatus(Status.error, message: e.toString()),
+      ));
     }
   }
 }
