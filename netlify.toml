@@ -1,0 +1,3 @@
+[build]
+  publish = "build/web"
+  command = "echo 'Skipping build, using prebuilt web files'"
