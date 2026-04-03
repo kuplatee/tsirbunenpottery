@@ -42,9 +42,7 @@ lib/
         pages/                     # Top-level page widgets (one per route)
         {feature}_view/            # Sub-views / layout widgets for that page
       repository/
-        products_repository.dart   # Orchestrates cloud_service calls
-        cloud_service.dart         # Feature-specific Firestore queries
-        dev_data.dart              # Hardcoded dev/test data
+        products_repository.dart   # Firestore queries + maps documents to domain models
 
   localization/
     translation.dart               # Translation enum (all string keys)
@@ -92,7 +90,7 @@ All blocs are created in `blocs.dart`, seeded with initial events, and exposed t
 
 ## Data flow
 ```
-Firestore → CommonCloudService → Feature CloudService → Repository → Bloc → Widget
+Firestore → CommonCloudService → Repository → Bloc → Widget
 ```
 
 ## Localization
