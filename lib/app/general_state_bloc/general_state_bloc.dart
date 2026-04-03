@@ -1,14 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:madmudmobile/app/general_state_bloc/general_state_event.dart';
 import 'package:madmudmobile/app/general_state_bloc/general_state_state.dart';
-import 'package:madmudmobile/app/general_state_bloc/utils.dart';
-import 'package:madmudmobile/common_cloud_service/common_cloud_service.dart';
+import 'package:madmudmobile/common_cloud_service/cloud_service.dart';
 import 'package:madmudmobile/utils/constants.dart';
 
 class GeneralStateBloc extends Bloc<GeneralStateEvent, GeneralState> {
-  final CommonCloudService _commonCloudService;
+  final CloudService _cloudService;
 
-  GeneralStateBloc(this._commonCloudService) : super(const GeneralState()) {
+  GeneralStateBloc(this._cloudService) : super(const GeneralState()) {
     on<GeneralStateEvent>(_onEvent);
   }
 
@@ -32,10 +31,11 @@ class GeneralStateBloc extends Bloc<GeneralStateEvent, GeneralState> {
   Future<void> _onFetchHomePageImageFileName(
       FetchHomePageImageFileName event, Emitter<GeneralState> emit) async {
     try {
-      final homePageFileName = await _commonCloudService.fetchOneFromCloud(
-          collectionName: 'miscellaneous',
-          fromDocument: toHomePageFileName,
-          documentId: homePageImageDocId);
+      final data = await _cloudService.fetchOne(
+        collection: 'miscellaneous',
+        documentId: homePageImageDocId,
+      );
+      final homePageFileName = data?['name'] as String?;
 
       if (homePageFileName != null) {
         emit(state.copyWith(newHomePageImageFileName: homePageFileName));

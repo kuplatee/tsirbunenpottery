@@ -9,7 +9,7 @@
 | State management | `flutter_bloc` |
 | Dependency injection | `get_it` (service locator) |
 | Routing | `go_router` + `go_router_builder` (type-safe) |
-| Backend | Firebase Firestore via `CommonCloudService` |
+| Backend | Firebase Firestore via `FirestoreCloudService` (`CloudService` interface) |
 | Models | `freezed` + `json_serializable` (code-gen) |
 | Localization | Custom (see below) |
 
@@ -31,7 +31,8 @@ lib/
     tsirbunen_pottery_app/         # Root widget: MultiBlocProvider + MaterialApp.router
 
   common_cloud_service/
-    common_cloud_service.dart      # Generic Firestore helpers: fetchOne, fetchMany
+    cloud_service.dart             # Abstract interface: fetchOne, fetchMany (returns Map<String, dynamic>)
+    common_cloud_service.dart      # FirestoreCloudService — implements CloudService via Firebase
 
   features/
     {feature}/

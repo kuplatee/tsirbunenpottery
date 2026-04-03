@@ -13,12 +13,12 @@ import 'package:madmudmobile/features/products/repository/products_repository.da
 final getIt = GetIt.instance;
 
 void prepareBlocs() {
-  final commonCloudService = CommonCloudService();
+  final cloudService = FirestoreCloudService();
 
-  final generalStateBloc = GeneralStateBloc(commonCloudService);
+  final generalStateBloc = GeneralStateBloc(cloudService);
   generalStateBloc.add(FetchHomePageImageFileName());
 
-  final productsRepository = ProductsRepository(commonCloudService);
+  final productsRepository = ProductsRepository(cloudService);
   final productsBloc = ProductsBloc(productsRepository);
   productsBloc.add(FetchProducts());
 

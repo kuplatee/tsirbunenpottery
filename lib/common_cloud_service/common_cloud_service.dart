@@ -1,48 +1,38 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:madmudmobile/common_cloud_service/cloud_service.dart';
 
-typedef ObjectDoc = QueryDocumentSnapshot<Object?>;
-typedef DataMap = Map<String, dynamic>;
+class FirestoreCloudService implements CloudService {
+  final FirebaseFirestore _firestore;
 
-class CommonCloudService {
-  final FirebaseFirestore firestore;
+  FirestoreCloudService({FirebaseFirestore? firestore})
+      : _firestore = firestore ?? FirebaseFirestore.instance;
 
-  CommonCloudService({FirebaseFirestore? firestore})
-      : firestore = firestore ?? FirebaseFirestore.instance;
-
-  Future<T?> fetchOneFromCloud<T>({
-    required String collectionName,
-    required T Function(ObjectDoc doc) fromDocument,
+  @override
+  Future<Map<String, dynamic>?> fetchOne({
+    required String collection,
     required String documentId,
   }) async {
     try {
-      CollectionReference ref = firestore.collection(collectionName);
-
+      final ref = _firestore.collection(collection);
       final docs = await ref.get();
-
       final doc = docs.docs.firstWhere((d) => d.id == documentId);
-      return fromDocument(doc);
+      return {'id': doc.id, ...doc.data()};
     } catch (e) {
       print(e.toString());
       return null;
     }
   }
 
-  Future<List<T>> fetchManyFromCloud<T>({
-    required String collectionName,
-    required T Function(ObjectDoc doc) fromDocument,
+  @override
+  Future<List<Map<String, dynamic>>> fetchMany({
+    required String collection,
   }) async {
     try {
-      CollectionReference ref = firestore.collection(collectionName);
-
+      final ref = _firestore.collection(collection);
       final docs = await ref.get();
-
-      final items = <T>[];
-      for (var doc in docs.docs) {
-        final item = fromDocument(doc);
-        items.add(item);
-      }
-
-      return items;
+      return docs.docs
+          .map((doc) => {'id': doc.id, ...doc.data()})
+          .toList();
     } catch (e) {
       print(e.toString());
       return [];

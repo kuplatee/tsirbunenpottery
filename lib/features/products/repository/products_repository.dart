@@ -1,4 +1,4 @@
-import 'package:madmudmobile/common_cloud_service/common_cloud_service.dart';
+import 'package:madmudmobile/common_cloud_service/cloud_service.dart';
 import 'package:madmudmobile/features/products/domain/models/products/products.dart';
 import 'package:madmudmobile/features/products/domain/models/category/category.dart';
 import 'package:madmudmobile/features/products/domain/models/collection/collection.dart';
@@ -8,44 +8,30 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:madmudmobile/localization/languages.dart';
 import 'dart:convert';
 
-typedef ObjectDoc = QueryDocumentSnapshot<Object?>;
-typedef DataMap = Map<String, dynamic>;
-
 class ProductsRepository {
-  final CommonCloudService _commonCloudService;
-  ProductsRepository(this._commonCloudService);
-  // // FIXME: Bring these back when Firebase has the real data
-  // final CloudService _cloudService = CloudService();
+  final CloudService _cloudService;
+  ProductsRepository(this._cloudService);
 
   Future<Products> fetchProductData() async {
-    final productData = await fetchAllProductDataFromCloud();
-    return productData;
-
-    // Note: This is a temporary development implementation
-    // return products;
+    return fetchAllProductDataFromCloud();
   }
 
   Future<Products> fetchAllProductDataFromCloud() async {
-    final collections =
-        await _commonCloudService.fetchManyFromCloud<Collection>(
-      collectionName: 'collections',
-      fromDocument: toCollection,
-    );
+    final collectionsData =
+        await _cloudService.fetchMany(collection: 'collections');
+    final collections = collectionsData.map(toCollection).toList();
 
-    final categories = await _commonCloudService.fetchManyFromCloud<Category>(
-      collectionName: 'categories',
-      fromDocument: toCategory,
-    );
+    final categoriesData =
+        await _cloudService.fetchMany(collection: 'categories');
+    final categories = categoriesData.map(toCategory).toList();
 
-    final designs = await _commonCloudService.fetchManyFromCloud<Design>(
-      collectionName: 'designs',
-      fromDocument: (doc) => toDesign(doc, categories),
-    );
+    final designsData = await _cloudService.fetchMany(collection: 'designs');
+    final designs =
+        designsData.map((data) => toDesign(data, categories)).toList();
 
-    final pieces = (await _commonCloudService.fetchManyFromCloud<Piece?>(
-      collectionName: 'pieces',
-      fromDocument: (doc) => toPiece(doc, designs, collections),
-    ))
+    final piecesData = await _cloudService.fetchMany(collection: 'pieces');
+    final pieces = piecesData
+        .map((data) => toPiece(data, designs, collections))
         .whereType<Piece>()
         .toList();
 
@@ -57,23 +43,24 @@ class ProductsRepository {
     );
   }
 
-  Collection toCollection(ObjectDoc doc) {
+  Collection toCollection(Map<String, dynamic> data) {
     return Collection(
-        id: doc.id,
-        description: _toStringTranslations(doc.data(), 'description'),
-        names: _toStringTranslations(doc.data(), 'names'));
+      id: data['id'] as String,
+      description: _toStringTranslations(data, 'description'),
+      names: _toStringTranslations(data, 'names'),
+    );
   }
 
-  Category toCategory(ObjectDoc doc) {
+  Category toCategory(Map<String, dynamic> data) {
     return Category(
-        id: doc.id, names: _toStringTranslations(doc.data(), 'names'));
+      id: data['id'] as String,
+      names: _toStringTranslations(data, 'names'),
+    );
   }
 
-  Design toDesign(ObjectDoc doc, List<Category> categories) {
-    final data = doc.data() as DataMap;
-
+  Design toDesign(Map<String, dynamic> data, List<Category> categories) {
     return Design(
-      id: doc.id,
+      id: data['id'] as String,
       names: _toStringTranslations(data, 'names'),
       categoryIds: _idsOfRefs<Category>(data, categories, 'categoryIds'),
       description: _toStringTranslations(data, 'description'),
@@ -82,14 +69,15 @@ class ProductsRepository {
   }
 
   Piece? toPiece(
-      ObjectDoc doc, List<Design> designs, List<Collection> collections) {
-    final data = doc.data() as DataMap;
-    String? designId = _idOfRef<Design>(data, designs, 'designId');
+    Map<String, dynamic> data,
+    List<Design> designs,
+    List<Collection> collections,
+  ) {
+    final designId = _idOfRef<Design>(data, designs, 'designId');
     if (designId == null) return null;
 
     return Piece(
-      id: doc.id,
-      // serialNumber: data['serialNumber'] as int,
+      id: data['id'] as String,
       designId: designId,
       imageFileNames: ((data['imageFileNames'] ?? []) as List<dynamic>)
           .map((e) => e as String)
@@ -99,21 +87,21 @@ class ProductsRepository {
     );
   }
 
-  Map<Language, String> _toStringTranslations(Object? data, String fieldName) {
-    final namesMap = (data as DataMap)[fieldName] as Map<String, dynamic>;
-
+  Map<Language, String> _toStringTranslations(
+      Map<String, dynamic> data, String fieldName) {
+    final namesMap = data[fieldName] as Map<String, dynamic>;
     return namesMap.map(
-      (key, value) {
-        return MapEntry(
-            Language.values.firstWhere((e) => e.name == key), value as String);
-      },
+      (key, value) => MapEntry(
+        Language.values.firstWhere((e) => e.name == key),
+        value as String,
+      ),
     );
   }
 
   Map<Language, Map<String, String>> _toStringMapTranslations(
       Map<String, dynamic> data, String fieldName) {
     final detailsRaw = data[fieldName] as Map<String, dynamic>;
-    final Map<Language, Map<String, String>> details = detailsRaw.map(
+    return detailsRaw.map(
       (key, value) {
         final parsedMap = value is String
             ? jsonDecode(value) as Map<String, dynamic>
@@ -121,15 +109,12 @@ class ProductsRepository {
         final convertedMap = parsedMap.map(
           (innerKey, innerValue) => MapEntry(innerKey, innerValue as String),
         );
-
         return MapEntry(
           Language.values.firstWhere((e) => e.name == key),
           convertedMap,
         );
       },
     );
-
-    return details;
   }
 
   List<String> _idsOfRefs<T>(
@@ -138,38 +123,23 @@ class ProductsRepository {
     String fieldName,
   ) {
     final refs = data[fieldName] as List<dynamic>;
-    final List<String> refIds = refs.map((e) {
+    final refIds = refs.map((e) {
       if (e is DocumentReference) return e.id;
       return e as String;
     }).toList();
 
-    List<String> existingIds = [];
-
-    for (final refId in refIds) {
-      final exists = items.any((item) {
-        final itemId = (item as dynamic).id;
-        return itemId == refId;
-      });
-      if (exists) existingIds.add(refId);
-    }
-
-    return existingIds;
+    return refIds.where((refId) {
+      return items.any((item) => (item as dynamic).id == refId);
+    }).toList();
   }
 
   String? _idOfRef<T>(
-      Map<String, dynamic> documentMap, List<T> items, String fieldName) {
-    if (documentMap[fieldName] != null) {
-      final value = documentMap[fieldName];
-      final refId = value is DocumentReference ? value.id : value as String;
+      Map<String, dynamic> data, List<T> items, String fieldName) {
+    final value = data[fieldName];
+    if (value == null) return null;
 
-      final exists = items.any((item) {
-        final itemId = (item as dynamic).id;
-        return itemId == refId;
-      });
-
-      if (exists) return refId;
-    }
-
-    return null;
+    final refId = value is DocumentReference ? value.id : value as String;
+    final exists = items.any((item) => (item as dynamic).id == refId);
+    return exists ? refId : null;
   }
 }
