@@ -9,7 +9,6 @@ void main() async {
   setAppStatusBarColor();
   WidgetsFlutterBinding.ensureInitialized();
 
-  // // FIXME: Bring this bach once Firebase has the real data
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

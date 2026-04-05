@@ -5,7 +5,10 @@ import 'package:madmudmobile/app/language_bloc/language_bloc.dart';
 import 'package:madmudmobile/app/language_bloc/language_state.dart';
 import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_bloc.dart';
 import 'package:madmudmobile/features/home/domain/bloc/home_bloc.dart';
-import 'package:madmudmobile/features/products/domain/bloc/products_bloc.dart';
+import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dart';
+import 'package:madmudmobile/features/collections/domain/bloc/collections_bloc.dart';
+import 'package:madmudmobile/features/designs/domain/bloc/designs_bloc.dart';
+import 'package:madmudmobile/features/pieces/domain/bloc/pieces_bloc.dart';
 import 'package:madmudmobile/localization/app_locale.dart';
 import 'package:madmudmobile/localization/languages.dart';
 import 'package:madmudmobile/app/router/route_controller.dart';
@@ -23,7 +26,10 @@ class TsirbunenPotteryApp extends StatelessWidget {
       providers: [
         BlocProvider.value(value: getIt.get<LanguageBloc>()),
         BlocProvider.value(value: getIt.get<HomeBloc>()),
-        BlocProvider.value(value: getIt.get<ProductsBloc>()),
+        BlocProvider.value(value: getIt.get<PiecesBloc>()),
+        BlocProvider.value(value: getIt.get<DesignsBloc>()),
+        BlocProvider.value(value: getIt.get<CategoriesBloc>()),
+        BlocProvider.value(value: getIt.get<CollectionsBloc>()),
         BlocProvider.value(value: getIt.get<ScrollAndRouteBloc>()),
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
