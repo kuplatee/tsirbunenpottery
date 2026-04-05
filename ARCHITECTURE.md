@@ -34,16 +34,19 @@ lib/
     cloud_service.dart             # Abstract interface: fetchOne, fetchMany (returns Map<String, dynamic>)
     common_cloud_service.dart      # FirestoreCloudService — implements CloudService via Firebase
 
+  common_data/
+    products_repository.dart       # Shared cache: fetches all Firestore collections once, holds AllProductsData record
+
   features/
     {feature}/
       presentation/
         pages/                     # Required: thin route-connected page widgets (one per route)
         {feature}_view/            # Add when presentation has >1 non-trivial sub-component
       domain/                      # Add when feature has local state management
-        bloc/                      # BLoC (events, state, bloc, utils)
+        bloc/                      # BLoC (events, state, bloc)
         models/                    # Freezed domain models
       repository/                  # Add when feature fetches its own data
-        {feature}_repository.dart  # Firestore queries + maps documents to domain models
+        {feature}_repository.dart  # Extracts and shapes feature data from ProductsRepository or CloudService
 
   localization/
     translation.dart               # Translation enum (all string keys)
@@ -67,6 +70,7 @@ lib/
     action_button/ app_bar/ company/ drawer/ footer/
     horizontal_navigation/ hover_detector/ page_base/
     photo_with_fallback/ progress_indicator/
+    products_sub_view/             # ProductsSubView, PieceCard, ViewMode, GridParams, ScrollPositionMixin
 ```
 
 ## Feature architectural contract
@@ -93,16 +97,23 @@ Commented-out (not active): `designs`, `story`
 | Bloc | Registered in | Responsibility |
 |---|---|---|
 | `LanguageBloc` | getIt singleton | Runtime language toggle (pure UI state) |
-| `HomeBloc` | getIt singleton | Fetch home page image filename from Firestore |
-| `ProductsBloc` | getIt singleton | Fetch and hold all product data |
 | `ScrollAndRouteBloc` | getIt singleton | Persist scroll positions per route |
+| `HomeBloc` | getIt singleton | Fetch home page image filename from Firestore |
+| `PiecesBloc` | getIt singleton | Hold shaped pieces + designs data for the Pieces route |
+| `DesignsBloc` | getIt singleton | Hold shaped designs data (future Designs route) |
+| `CategoriesBloc` | getIt singleton | Hold shaped categories + designs data for the Categories route |
+| `CollectionsBloc` | getIt singleton | Hold shaped collections + designs data for the Collections route |
 
 All blocs are created in `blocs.dart`, seeded with initial events, and exposed to the widget tree via `MultiBlocProvider` in `TsirbunenPotteryApp`.
 
 ## Data flow
 ```
-Firestore → CommonCloudService → Repository → Bloc → Widget
+Firestore → CloudService → ProductsRepository (shared cache) → FeatureRepository → FeatureBloc → Widget
 ```
+
+`ProductsRepository` fetches all Firestore collections once and caches the result as an `AllProductsData` record. Feature repositories receive it, extract and shape their slice of the data, and return it to their bloc.
+
+`HomeRepository` fetches independently from `CloudService` (home page data is unrelated to product data).
 
 ## Localization
 - All user-visible strings are keyed by `Translation` enum.

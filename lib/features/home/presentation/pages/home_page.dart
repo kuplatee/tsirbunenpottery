@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/app/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/app/language_bloc/language_state.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
 import 'package:madmudmobile/features/home/domain/bloc/home_bloc.dart';
 import 'package:madmudmobile/features/home/domain/bloc/home_state.dart';
 import 'package:madmudmobile/features/home/presentation/pages/home_page_text_content.dart';

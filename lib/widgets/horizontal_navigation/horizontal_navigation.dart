@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/app/router/route_enum.dart';
+import 'package:madmudmobile/bootstrap/router/route_enum.dart';
 import 'package:madmudmobile/utils/current_page_name_from_settings.dart';
 import 'package:madmudmobile/widgets/company/trademark.dart';
 

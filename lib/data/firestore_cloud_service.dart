@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:madmudmobile/common_cloud_service/cloud_service.dart';
+import 'package:madmudmobile/data/cloud_service.dart';
 
 class FirestoreCloudService implements CloudService {
   final FirebaseFirestore _firestore;

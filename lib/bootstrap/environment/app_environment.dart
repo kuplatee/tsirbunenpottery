@@ -1,3 +1,3 @@
-class AppEnvironment {
+class Environment {
   static bool noNetworkImages = false;
 }

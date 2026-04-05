@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:madmudmobile/app/blocs/blocs.dart';
-import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_bloc.dart';
-import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_event.dart';
+import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
+import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_bloc.dart';
+import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_event.dart';
 import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
-import 'package:madmudmobile/widgets/products_sub_view/piece_card.dart';
+import 'package:madmudmobile/widgets/pottery_grid/piece_card.dart';
 import 'package:madmudmobile/widgets/action_button/action_button.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/widgets/products_sub_view/models.dart';
-import 'package:madmudmobile/widgets/products_sub_view/scroll_position_mixin.dart';
-import 'package:madmudmobile/widgets/products_sub_view/title_with_hover_effect.dart';
+import 'package:madmudmobile/widgets/pottery_grid/models.dart';
+import 'package:madmudmobile/widgets/pottery_grid/scroll_position_mixin.dart';
+import 'package:madmudmobile/widgets/pottery_grid/title_with_hover_effect.dart';
 import 'package:madmudmobile/localization/languages.dart';
 
 // Note: Let's subtract some space from the photo width (if single row) as a guide to
@@ -23,7 +23,7 @@ const double defaultMaxPhotoWidth = 300.0;
 const double sideMargin = 25.0;
 const double showExpandBreakpoint = 700.0;
 
-class ProductsSubView extends StatefulWidget {
+class PotteryGrid extends StatefulWidget {
   final String title;
   final String id;
   final List<Design> designs;
@@ -33,9 +33,11 @@ class ProductsSubView extends StatefulWidget {
   final Map<String, List<String>> imageFileNamesByDesignId;
   final GridParams gridParams;
   final ViewMode mode;
+  final String routeRoot;
+  final bool isListWithSubRoutes;
   final bool isTheOnlySubView;
 
-  const ProductsSubView({
+  const PotteryGrid({
     super.key,
     required this.title,
     required this.id,
@@ -45,6 +47,8 @@ class ProductsSubView extends StatefulWidget {
     required this.imageFileNamesByDesignId,
     required this.gridParams,
     required this.mode,
+    required this.routeRoot,
+    required this.isListWithSubRoutes,
     required this.isTheOnlySubView,
   });
 
@@ -53,11 +57,11 @@ class ProductsSubView extends StatefulWidget {
   }
 
   @override
-  State<ProductsSubView> createState() => _ProductsSubViewState();
+  State<PotteryGrid> createState() => _PotteryGridState();
 }
 
-class _ProductsSubViewState extends State<ProductsSubView>
-    with ScrollPositionMixin<ProductsSubView> {
+class _PotteryGridState extends State<PotteryGrid>
+    with ScrollPositionMixin<PotteryGrid> {
   @override
   String get scrollTargetName => widget.scrollTargetName;
   bool expandAll = false;
@@ -146,11 +150,10 @@ class _ProductsSubViewState extends State<ProductsSubView>
   }
 
   void _navigateTo(BuildContext context) {
-    final routeRoot = widget.mode.routeRoot();
     final layoutBloc = getIt.get<ScrollAndRouteBloc>();
     // FIXME: Should we also reset possible current history?
     layoutBloc.add(AddToHistory(route: _fromRoute()));
-    context.go('$routeRoot/${widget.id}');
+    context.go('${widget.routeRoot}/${widget.id}');
   }
 
   Size _photoSize(bool isNarrow) {
@@ -176,11 +179,9 @@ class _ProductsSubViewState extends State<ProductsSubView>
   }
 
   String _fromRoute() {
-    final routeRoot = widget.mode.routeRoot();
-    if (widget.mode == ViewMode.pieces) {
-      return routeRoot;
+    if (!widget.isListWithSubRoutes || !widget.isTheOnlySubView) {
+      return widget.routeRoot;
     }
-
-    return widget.isTheOnlySubView ? '$routeRoot/${widget.id}' : routeRoot;
+    return '${widget.routeRoot}/${widget.id}';
   }
 }

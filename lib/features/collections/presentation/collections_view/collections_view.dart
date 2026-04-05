@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/app/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/app/language_bloc/language_state.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
 import 'package:madmudmobile/features/collections/domain/bloc/collections_bloc.dart';
 import 'package:madmudmobile/features/collections/domain/bloc/collections_state.dart';
 import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/widgets/products_sub_view/models.dart';
-import 'package:madmudmobile/widgets/products_sub_view/products_sub_view.dart';
-import 'package:madmudmobile/widgets/products_sub_view/scroll_position_mixin.dart';
+import 'package:madmudmobile/bootstrap/router/routes.dart';
+import 'package:madmudmobile/widgets/pottery_grid/models.dart';
+import 'package:madmudmobile/widgets/pottery_grid/pottery_grid.dart';
+import 'package:madmudmobile/widgets/pottery_grid/scroll_position_mixin.dart';
 import 'package:madmudmobile/widgets/footer/footer.dart';
 import 'package:madmudmobile/widgets/page_base/page_base.dart';
 
@@ -65,7 +66,7 @@ class _CollectionsViewState extends State<CollectionsView>
                     final collection = state.collections
                         .firstWhere((c) => c.id == collectionId);
 
-                    return ProductsSubView(
+                    return PotteryGrid(
                       id: collectionId,
                       title: collection.names[language] ?? '',
                       designs: designs,
@@ -75,6 +76,8 @@ class _CollectionsViewState extends State<CollectionsView>
                       gridParams: gridParams,
                       isTheOnlySubView: widget.selectedCollectionId != null,
                       mode: ViewMode.collections,
+                      routeRoot: collectionsRoot,
+                      isListWithSubRoutes: true,
                     );
                   }),
                   const Footer(),

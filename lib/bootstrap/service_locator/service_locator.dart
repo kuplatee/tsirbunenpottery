@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
-import 'package:madmudmobile/app/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_bloc.dart';
-import 'package:madmudmobile/common_cloud_service/common_cloud_service.dart';
-import 'package:madmudmobile/common_data/products_repository.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
+import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_bloc.dart';
+import 'package:madmudmobile/data/firestore_cloud_service.dart';
+import 'package:madmudmobile/data/products_repository.dart';
 import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dart';
 import 'package:madmudmobile/features/categories/domain/bloc/categories_event.dart';
 import 'package:madmudmobile/features/categories/repository/categories_repository.dart';

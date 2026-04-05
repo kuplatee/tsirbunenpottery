@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/app/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/app/language_bloc/language_state.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
 import 'package:madmudmobile/features/pieces/domain/bloc/pieces_bloc.dart';
 import 'package:madmudmobile/features/pieces/domain/bloc/pieces_state.dart';
-import 'package:madmudmobile/widgets/products_sub_view/models.dart';
-import 'package:madmudmobile/widgets/products_sub_view/products_sub_view.dart';
-import 'package:madmudmobile/widgets/products_sub_view/scroll_position_mixin.dart';
+import 'package:madmudmobile/bootstrap/router/routes.dart';
+import 'package:madmudmobile/widgets/pottery_grid/models.dart';
+import 'package:madmudmobile/widgets/pottery_grid/pottery_grid.dart';
+import 'package:madmudmobile/widgets/pottery_grid/scroll_position_mixin.dart';
 import 'package:madmudmobile/localization/app_locale.dart';
 import 'package:madmudmobile/localization/translation.dart';
 import 'package:madmudmobile/widgets/footer/footer.dart';
@@ -43,7 +44,7 @@ class _PiecesViewState extends State<PiecesView>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ProductsSubView(
+                  PotteryGrid(
                     id: 'pieces',
                     title: context.local(Translation.allPieces),
                     designs: allDesigns,
@@ -51,8 +52,10 @@ class _PiecesViewState extends State<PiecesView>
                     imageFileNamesByDesignId: state.imageFileNamesByDesignId,
                     language: language,
                     gridParams: gridParams,
-                    isTheOnlySubView: true,
                     mode: ViewMode.pieces,
+                    routeRoot: piecesRoot,
+                    isListWithSubRoutes: false,
+                    isTheOnlySubView: true,
                   ),
                   const Footer(),
                 ],

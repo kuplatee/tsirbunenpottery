@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:madmudmobile/app/blocs/blocs.dart';
-import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_bloc.dart';
-import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_event.dart';
+import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
+import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_bloc.dart';
+import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_event.dart';
 
 mixin ScrollPositionMixin<T extends StatefulWidget> on State<T> {
   double _lastInitialScrollPosition = 0.0;

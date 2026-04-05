@@ -26,21 +26,6 @@ extension ScrollTargetExtension on ViewMode {
   }
 }
 
-extension ViewModeRouteExtension on ViewMode {
-  String routeRoot() {
-    switch (this) {
-      case ViewMode.categories:
-        return '/categories';
-      case ViewMode.collections:
-        return '/collections';
-      // case ViewMode.designs:
-      //   return '/designs';
-      case ViewMode.pieces:
-        return '/pieces';
-    }
-  }
-}
-
 class GridParams {
   final int itemsPerRow;
   final double photoWidth;

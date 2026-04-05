@@ -1,4 +1,4 @@
-import 'package:madmudmobile/common_cloud_service/cloud_service.dart';
+import 'package:madmudmobile/data/cloud_service.dart';
 import 'package:madmudmobile/features/categories/domain/models/category/category.dart';
 import 'package:madmudmobile/features/collections/domain/models/collection/collection.dart';
 import 'package:madmudmobile/features/designs/domain/models/design/design.dart';

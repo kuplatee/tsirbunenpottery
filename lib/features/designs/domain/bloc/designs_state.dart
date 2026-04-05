@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:madmudmobile/app/blocs/bloc_status.dart';
+import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
 import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
 
 class DesignsState extends Equatable {

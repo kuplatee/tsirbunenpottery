@@ -1,4 +1,4 @@
-import 'package:madmudmobile/common_cloud_service/cloud_service.dart';
+import 'package:madmudmobile/data/cloud_service.dart';
 import 'package:madmudmobile/utils/constants.dart';
 
 class HomeRepository {

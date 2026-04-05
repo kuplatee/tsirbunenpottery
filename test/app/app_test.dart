@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:madmudmobile/app/tsirbunen_pottery_app/tsirbunen_pottery_app.dart';
+import 'package:madmudmobile/bootstrap/tsirbunen_pottery_app/tsirbunen_pottery_app.dart';
 import '../utils/prepare_blocs_for_tests.dart';
 
 void main() {

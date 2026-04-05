@@ -1,8 +1,8 @@
 import 'package:madmudmobile/localization/app_locale.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/app/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/app/language_bloc/language_state.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
 import 'package:madmudmobile/features/pieces/domain/bloc/pieces_bloc.dart';
 import 'package:madmudmobile/features/pieces/domain/bloc/pieces_state.dart';
 import 'package:madmudmobile/features/pieces/presentation/single_piece_view/design_description.dart';

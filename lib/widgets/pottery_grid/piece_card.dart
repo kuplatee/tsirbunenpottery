@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:madmudmobile/app/blocs/blocs.dart';
-import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_bloc.dart';
-import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_event.dart';
-import 'package:madmudmobile/app/router/routes.dart';
+import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
+import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_bloc.dart';
+import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_event.dart';
+import 'package:madmudmobile/bootstrap/router/routes.dart';
 import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
 import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
 import 'package:madmudmobile/localization/languages.dart';

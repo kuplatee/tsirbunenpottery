@@ -1,4 +1,4 @@
-import 'package:madmudmobile/app/blocs/bloc_status.dart';
+import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
 
 class DesignsEvent {}
 

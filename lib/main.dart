@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/app/blocs/blocs.dart';
-import 'package:madmudmobile/app/tsirbunen_pottery_app/tsirbunen_pottery_app.dart';
+import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
+import 'package:madmudmobile/bootstrap/app/app.dart';
 import 'package:madmudmobile/theme/app_status_bar_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -17,5 +17,5 @@ void main() async {
   // to make bloc-to-bloc communication easier.
   prepareBlocs();
 
-  runApp(const TsirbunenPotteryApp());
+  runApp(const App());
 }

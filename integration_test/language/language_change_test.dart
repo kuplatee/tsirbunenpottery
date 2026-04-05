@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:madmudmobile/app/blocs/blocs.dart';
 import 'package:madmudmobile/app/general_state_bloc/general_state_bloc.dart';
-import 'package:madmudmobile/app/tsirbunen_pottery_app/tsirbunen_pottery_app.dart';
+import 'package:madmudmobile/bootstrap/tsirbunen_pottery_app/tsirbunen_pottery_app.dart';
 import 'package:madmudmobile/localization/languages.dart';
 import 'language_utils.dart';
 

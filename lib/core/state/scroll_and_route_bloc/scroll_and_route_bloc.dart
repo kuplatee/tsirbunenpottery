@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_event.dart';
-import 'package:madmudmobile/app/scroll_and_route_bloc/scroll_and_route_state.dart';
+import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_event.dart';
+import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_state.dart';
 
 class ScrollAndRouteBloc
     extends Bloc<ScrollAndRouteEvent, ScrollAndRouteState> {

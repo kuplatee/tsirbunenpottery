@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/app/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/app/language_bloc/language_state.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
 import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dart';
 import 'package:madmudmobile/features/categories/domain/bloc/categories_state.dart';
 import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/widgets/products_sub_view/models.dart';
-import 'package:madmudmobile/widgets/products_sub_view/products_sub_view.dart';
-import 'package:madmudmobile/widgets/products_sub_view/scroll_position_mixin.dart';
+import 'package:madmudmobile/bootstrap/router/routes.dart';
+import 'package:madmudmobile/widgets/pottery_grid/models.dart';
+import 'package:madmudmobile/widgets/pottery_grid/pottery_grid.dart';
+import 'package:madmudmobile/widgets/pottery_grid/scroll_position_mixin.dart';
 import 'package:madmudmobile/widgets/footer/footer.dart';
 import 'package:madmudmobile/widgets/page_base/page_base.dart';
 
@@ -65,7 +66,7 @@ class _CategoriesViewState extends State<CategoriesView>
                     final category = state.categories
                         .firstWhere((c) => c.id == categoryId);
 
-                    return ProductsSubView(
+                    return PotteryGrid(
                       id: categoryId,
                       title: category.names[language] ?? '',
                       designs: designs,
@@ -73,8 +74,10 @@ class _CategoriesViewState extends State<CategoriesView>
                       imageFileNamesByDesignId: state.imageFileNamesByDesignId,
                       language: language,
                       gridParams: gridParams,
-                      isTheOnlySubView: widget.selectedCategoryId != null,
                       mode: ViewMode.categories,
+                      routeRoot: categoriesRoot,
+                      isListWithSubRoutes: true,
+                      isTheOnlySubView: widget.selectedCategoryId != null,
                     );
                   }),
                   const Footer(),

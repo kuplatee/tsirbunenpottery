@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/app/blocs/bloc_status.dart';
+import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
 import 'package:madmudmobile/features/designs/domain/bloc/designs_event.dart';
 import 'package:madmudmobile/features/designs/domain/bloc/designs_state.dart';
 import 'package:madmudmobile/features/designs/repository/designs_repository.dart';

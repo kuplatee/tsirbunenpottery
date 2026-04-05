@@ -7,8 +7,8 @@ import 'package:madmudmobile/features/categories/presentation/pages/categories_p
 import 'package:madmudmobile/features/pieces/presentation/pages/single_piece_page.dart';
 import 'package:madmudmobile/features/pieces/presentation/pages/pieces_page.dart';
 import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/app/router/route_enum.dart';
-import 'package:madmudmobile/app/router/routes.dart';
+import 'package:madmudmobile/bootstrap/router/route_enum.dart';
+import 'package:madmudmobile/bootstrap/router/routes.dart';
 
 const piecesPageName = 'Pieces';
 const categoryPageName = 'Category';
