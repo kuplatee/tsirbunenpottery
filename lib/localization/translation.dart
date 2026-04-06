@@ -30,7 +30,8 @@ enum Translation {
   emailCopiedToClipboard,
   tapToCopyEmail,
   contactEmail,
-  storyOnContactPage
+  storyOnContactPage,
+  dataLoadError,
 }
 
 extension TranslationToKey on Translation {

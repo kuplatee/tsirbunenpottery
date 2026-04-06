@@ -38,6 +38,7 @@ class En implements Translations {
         'contactEmail': 'tsirbunenpottery@gmail.com',
         'storyOnContactPage':
             'Crafted with patience, fired with passion — every piece tells a story. From rustic charm to modern elegance, discover ceramics that feel like home.',
+        'dataLoadError': 'Could not load data. Please try again later.',
       };
 }
 

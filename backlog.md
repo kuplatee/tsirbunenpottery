@@ -9,11 +9,7 @@
   1. Silent error swallowing in CommonCloudService                                                                                                     
   print(e) + return null means Firestore failures are invisible. No user feedback, no debugging. Fix: propagate errors via Either/exceptions and handle
    them in blocs.                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                                                  
-  4. No error state rendered in UI                                                                                                                     
-  Blocs have a Status.error field but zero pages actually check it. Users see an empty screen on Firestore failure. Fix: all BlocBuilders must handle  
-  loading/error/data states explicitly.                                                                                                                
-                                                                                                                                                       
+                                                                                                                                                                                                                                                                                                                                                                                                           
   5. (item as dynamic).id in ProductsRepository                                                                                                        
   as dynamic is a type-safety escape hatch that defeats null safety and generics. Fix: use a proper generic or typed abstraction.                      
                                                                                                                                                        
@@ -22,10 +18,7 @@
                                                                                                                                                        
   7. firstWhere crash risk in products_view.dart                                                                                                       
   If a category/collection ID doesn't match, it throws. Fix: firstWhereOrNull with a safe fallback string.                                             
-                                                                                                                                                       
-  8. No loading/error bloc states in organizeProductsData                                                                                              
-  Data transform silently drops orphaned references. On a production app this masks data integrity bugs. Fix: log discarded items, surface counts in   
-  debug mode.                                                                                                                                          
+                                                                                                                                      
                   
   9. Contact form is a dead stub                                                                                                                       
   A visible submit button that does nothing is a UX lie. Fix: either wire it up or hide the button until implemented.

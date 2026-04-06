@@ -39,6 +39,7 @@ class Fi implements Translations {
         'contactEmail': 'tsirbunenpottery@gmail.com',
         'storyOnContactPage':
             'Käsityönä valmistettu, intohimolla poltettu - jokaisella kappaleella on tarina. Löydä keramiikkaa, joka tuntuu kodilta.',
+        'dataLoadError': 'Tietojen lataus epäonnistui. Yritä myöhemmin uudelleen.',
       };
 }
 

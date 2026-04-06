@@ -9,6 +9,7 @@ import 'package:madmudmobile/widgets/items_grid/models.dart';
 import 'package:madmudmobile/widgets/items_grid/items_grid.dart';
 import 'package:madmudmobile/widgets/items_grid/scroll_position_mixin.dart';
 import 'package:madmudmobile/widgets/footer/footer.dart';
+import 'package:madmudmobile/widgets/bloc_status_view/bloc_status_view.dart';
 import 'package:madmudmobile/widgets/page_base/page_base.dart';
 
 class DesignsView extends StatefulWidget {
@@ -41,7 +42,9 @@ class _DesignsViewState extends State<DesignsView>
                     .toList(),
               );
 
-              return Column(
+              return BlocStatusView(
+                status: state.blocStatus,
+                child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -63,7 +66,7 @@ class _DesignsViewState extends State<DesignsView>
                   }),
                   const Footer(),
                 ],
-              );
+              ));
             },
           );
         },

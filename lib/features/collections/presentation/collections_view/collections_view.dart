@@ -10,6 +10,7 @@ import 'package:madmudmobile/widgets/items_grid/models.dart';
 import 'package:madmudmobile/widgets/items_grid/items_grid.dart';
 import 'package:madmudmobile/widgets/items_grid/scroll_position_mixin.dart';
 import 'package:madmudmobile/widgets/footer/footer.dart';
+import 'package:madmudmobile/widgets/bloc_status_view/bloc_status_view.dart';
 import 'package:madmudmobile/widgets/page_base/page_base.dart';
 
 class CollectionsView extends StatefulWidget {
@@ -43,7 +44,9 @@ class _CollectionsViewState extends State<CollectionsView>
               final allPieces = state.piecesById.values.toList();
               final gridParams = _gridParams(context, groupedDesigns);
 
-              return Column(
+              return BlocStatusView(
+                status: state.blocStatus,
+                child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -84,7 +87,7 @@ class _CollectionsViewState extends State<CollectionsView>
                   }),
                   const Footer(),
                 ],
-              );
+              ));
             },
           );
         },

@@ -11,6 +11,7 @@ import 'package:madmudmobile/widgets/items_grid/scroll_position_mixin.dart';
 import 'package:madmudmobile/localization/app_locale.dart';
 import 'package:madmudmobile/localization/translation.dart';
 import 'package:madmudmobile/widgets/footer/footer.dart';
+import 'package:madmudmobile/widgets/bloc_status_view/bloc_status_view.dart';
 import 'package:madmudmobile/widgets/page_base/page_base.dart';
 
 class PiecesView extends StatefulWidget {
@@ -40,7 +41,9 @@ class _PiecesViewState extends State<PiecesView>
               final allPieces = state.piecesById.values.toList();
               final gridParams = _gridParams(context, [allDesigns.length]);
 
-              return Column(
+              return BlocStatusView(
+                status: state.blocStatus,
+                child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -59,7 +62,7 @@ class _PiecesViewState extends State<PiecesView>
                   ),
                   const Footer(),
                 ],
-              );
+              ));
             },
           );
         },

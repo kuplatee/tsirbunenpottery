@@ -6,6 +6,7 @@ import 'package:madmudmobile/features/home/domain/bloc/home_bloc.dart';
 import 'package:madmudmobile/features/home/domain/bloc/home_state.dart';
 import 'package:madmudmobile/features/home/presentation/pages/home_page_text_content.dart';
 import 'package:madmudmobile/utils/constants.dart';
+import 'package:madmudmobile/widgets/bloc_status_view/bloc_status_view.dart';
 import 'package:madmudmobile/widgets/page_base/page_base.dart';
 import 'package:madmudmobile/widgets/photo_with_fallback/photo_with_fallback.dart';
 
@@ -25,7 +26,9 @@ class HomePage extends StatelessWidget {
             builder: (BuildContext context, HomeState homeState) {
           final imageFileName = homeState.homePageImageFileName;
 
-          return Align(
+          return BlocStatusView(
+            status: homeState.status,
+            child: Align(
             alignment: Alignment.topCenter,
             child: Padding(
               padding: const EdgeInsets.all(30.0),
@@ -57,7 +60,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-          );
+          ));
         });
       }),
     );
