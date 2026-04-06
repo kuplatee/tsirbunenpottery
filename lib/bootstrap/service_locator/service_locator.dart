@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:madmudmobile/core/scroll_position_cache/scroll_position_cache.dart';
 import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_bloc.dart';
+import 'package:madmudmobile/core/state/navigation/navigation_bloc.dart';
 import 'package:madmudmobile/data/firestore_cloud_service.dart';
 import 'package:madmudmobile/data/products_repository.dart';
 import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dart';
@@ -49,13 +50,12 @@ void prepareBlocs() {
       CollectionsBloc(CollectionsRepository(productsRepository));
   collectionsBloc.add(FetchCollections());
 
-  final scrollAndRouteBloc = ScrollAndRouteBloc(scrollPositions: {});
-
   getIt.registerSingleton<LanguageBloc>(languageBloc);
   getIt.registerSingleton<HomeBloc>(homeBloc);
   getIt.registerSingleton<PiecesBloc>(piecesBloc);
   getIt.registerSingleton<DesignsBloc>(designsBloc);
   getIt.registerSingleton<CategoriesBloc>(categoriesBloc);
   getIt.registerSingleton<CollectionsBloc>(collectionsBloc);
-  getIt.registerSingleton<ScrollAndRouteBloc>(scrollAndRouteBloc);
+  getIt.registerSingleton<ScrollPositionCache>(ScrollPositionCache());
+  getIt.registerSingleton<NavigationBloc>(NavigationBloc());
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
-import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_bloc.dart';
-import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_event.dart';
+import 'package:madmudmobile/core/scroll_position_cache/scroll_position_cache.dart';
 
 mixin ScrollPositionMixin<T extends StatefulWidget> on State<T> {
   double _lastInitialScrollPosition = 0.0;
@@ -13,7 +12,8 @@ mixin ScrollPositionMixin<T extends StatefulWidget> on State<T> {
   @override
   void initState() {
     super.initState();
-    _lastInitialScrollPosition = _getPreviousScrollPosition();
+    _lastInitialScrollPosition =
+        getIt.get<ScrollPositionCache>().get(scrollTargetName);
     scrollController =
         ScrollController(initialScrollOffset: _lastInitialScrollPosition);
     _newScrollPosition = _lastInitialScrollPosition;
@@ -27,20 +27,12 @@ mixin ScrollPositionMixin<T extends StatefulWidget> on State<T> {
     super.dispose();
   }
 
-  double _getPreviousScrollPosition() {
-    return getIt.get<ScrollAndRouteBloc>().getScrollPosition(scrollTargetName);
-  }
-
   void _updateScrollPositionLocally() {
     _newScrollPosition = scrollController.position.pixels;
   }
 
   void _storeNewScrollPositionForNextVisit() {
     if (_newScrollPosition == _lastInitialScrollPosition) return;
-
-    getIt.get<ScrollAndRouteBloc>().add(ChangeScrollPosition(
-          target: scrollTargetName,
-          position: _newScrollPosition,
-        ));
+    getIt.get<ScrollPositionCache>().set(scrollTargetName, _newScrollPosition);
   }
 }

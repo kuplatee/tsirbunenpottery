@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
-import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_bloc.dart';
-import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_event.dart';
+import 'package:madmudmobile/core/state/navigation/navigation_bloc.dart';
+import 'package:madmudmobile/core/state/navigation/navigation_event.dart';
 import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
 import 'package:madmudmobile/widgets/items_grid/piece_card.dart';
 import 'package:madmudmobile/widgets/action_button/action_button.dart';
@@ -151,9 +151,9 @@ class _ItemsGridState extends State<ItemsGrid>
   }
 
   void _navigateTo(BuildContext context) {
-    final layoutBloc = getIt.get<ScrollAndRouteBloc>();
+    final navigationBloc = getIt.get<NavigationBloc>();
     // FIXME: Should we also reset possible current history?
-    layoutBloc.add(AddToHistory(route: _fromRoute()));
+    navigationBloc.add(PushToHistory(route: _fromRoute()));
     widget.onNavigate?.call(context, widget.id);
   }
 

@@ -1,35 +1,11 @@
-
-
-
-
-QUESTIONS:
-* Is it a good idea to have scroll data and route history data in the same bloc? And is a separate "god" of scrolling data a good idea at all or should we instead have the scroll data somewhere else, for example in the pieces bloc?
-* Is it a good idea to have the term "bloc" in any file or folder? It would be the same as having "products_array" somewhere?
-
-
-
-
-
-
-
-
-Now I see it. The real top-level issues:                                                                                        
+                                                                                    
   3. Tests are broken                                                                                                                                  
   products_bloc_test.dart lines 39 and 47 call ProductsRepository() with no arguments, but the constructor requires CommonCloudService. These tests
   don't compile. Nobody is running the tests.                                                                           
 
 
-
-                                                                                
-  5. DesignsBloc fires at startup but has no UI                                                         
-  It's registered, seeded, and fetches data — but nothing reads it yet. This is wasted work at startup.
-                                                                                                          
-  Which of these do you want to tackle first?                                                                                                                                                  
-                                              
-
-⏺ Here are the top issues, ordered by impact:                                                                                                          
-                                                                                                                                                       
-  ---                                                                                                                                                  
+                              
+                                                                                                                                         
   1. Silent error swallowing in CommonCloudService                                                                                                     
   print(e) + return null means Firestore failures are invisible. No user feedback, no debugging. Fix: propagate errors via Either/exceptions and handle
    them in blocs.                                                                                                                                      

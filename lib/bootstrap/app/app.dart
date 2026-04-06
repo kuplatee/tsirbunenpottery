@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
 import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
 import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
-import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_bloc.dart';
+import 'package:madmudmobile/core/state/navigation/navigation_bloc.dart';
 import 'package:madmudmobile/features/home/domain/bloc/home_bloc.dart';
 import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dart';
 import 'package:madmudmobile/features/collections/domain/bloc/collections_bloc.dart';
@@ -30,7 +30,7 @@ class App extends StatelessWidget {
         BlocProvider.value(value: getIt.get<DesignsBloc>()),
         BlocProvider.value(value: getIt.get<CategoriesBloc>()),
         BlocProvider.value(value: getIt.get<CollectionsBloc>()),
-        BlocProvider.value(value: getIt.get<ScrollAndRouteBloc>()),
+        BlocProvider.value(value: getIt.get<NavigationBloc>()),
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (BuildContext context, LanguageState state) {

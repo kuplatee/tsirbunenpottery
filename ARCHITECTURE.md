@@ -20,21 +20,25 @@ lib/
   main.dart                        # Entry point: init Firebase, prepareBlocs(), runApp()
   firebase_options.dart            # Auto-generated Firebase config
 
-  app/
-    blocs/blocs.dart               # GetIt setup — registers all singleton blocs
-    language_bloc/                 # App-wide UI state: runtime language toggle
-    scroll_and_route_bloc/         # Scroll positions keyed by route
+  bootstrap/
+    app/app.dart                   # Root widget: MultiBlocProvider + MaterialApp.router
     router/
       route_enum.dart              # RouteEnum with path() and pageName() extensions
       routes.dart / routes.g.dart  # go_router type-safe route definitions (generated)
       route_controller.dart        # Builds the GoRouter instance
-    tsirbunen_pottery_app/         # Root widget: MultiBlocProvider + MaterialApp.router
+    service_locator/
+      service_locator.dart         # GetIt setup — registers all singletons (blocs + caches)
 
-  common_cloud_service/
+  core/
+    scroll_position_cache/
+      scroll_position_cache.dart   # Plain class: key→offset cache for scroll restoration (no BLoC)
+    state/
+      language/                    # App-wide UI state: runtime language toggle
+      navigation/                  # Back-navigation history stack (drives AppBar back arrow)
+
+  data/
     cloud_service.dart             # Abstract interface: fetchOne, fetchMany (returns Map<String, dynamic>)
-    common_cloud_service.dart      # FirestoreCloudService — implements CloudService via Firebase
-
-  common_data/
+    firestore_cloud_service.dart   # FirestoreCloudService — implements CloudService via Firebase
     products_repository.dart       # Shared cache: fetches all Firestore collections once, holds AllProductsData record
 
   features/
@@ -70,7 +74,7 @@ lib/
     action_button/ app_bar/ company/ drawer/ footer/
     horizontal_navigation/ hover_detector/ page_base/
     photo_with_fallback/ progress_indicator/
-    products_sub_view/             # ProductsSubView, PieceCard, ViewMode, GridParams, ScrollPositionMixin
+    items_grid/                    # ItemsGrid, PieceCard, ViewMode, GridParams, ScrollPositionMixin
 ```
 
 ## Feature architectural contract
@@ -93,18 +97,19 @@ All features must follow this structure:
 
 Commented-out (not active): `designs`, `story`
 
-## Blocs
-| Bloc | Registered in | Responsibility |
+## Singletons (registered in service_locator.dart)
+| Type | Kind | Responsibility |
 |---|---|---|
-| `LanguageBloc` | getIt singleton | Runtime language toggle (pure UI state) |
-| `ScrollAndRouteBloc` | getIt singleton | Persist scroll positions per route |
-| `HomeBloc` | getIt singleton | Fetch home page image filename from Firestore |
-| `PiecesBloc` | getIt singleton | Hold shaped pieces + designs data for the Pieces route |
-| `DesignsBloc` | getIt singleton | Hold shaped designs data (future Designs route) |
-| `CategoriesBloc` | getIt singleton | Hold shaped categories + designs data for the Categories route |
-| `CollectionsBloc` | getIt singleton | Hold shaped collections + designs data for the Collections route |
+| `LanguageBloc` | BLoC | Runtime language toggle (pure UI state) |
+| `NavigationBloc` | BLoC | Back-navigation history stack — drives AppBar back arrow |
+| `HomeBloc` | BLoC | Fetch home page image filename from Firestore |
+| `PiecesBloc` | BLoC | Hold shaped pieces + designs data for the Pieces route |
+| `DesignsBloc` | BLoC | Hold shaped designs data (future Designs route) |
+| `CategoriesBloc` | BLoC | Hold shaped categories + designs data for the Categories route |
+| `CollectionsBloc` | BLoC | Hold shaped collections + designs data for the Collections route |
+| `ScrollPositionCache` | plain class | Key→offset map for scroll restoration; never drives rebuilds |
 
-All blocs are created in `blocs.dart`, seeded with initial events, and exposed to the widget tree via `MultiBlocProvider` in `TsirbunenPotteryApp`.
+BLoCs are seeded with initial events in `service_locator.dart` and exposed to the widget tree via `MultiBlocProvider` in `App`.
 
 ## Data flow
 ```
