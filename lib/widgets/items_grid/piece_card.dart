@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
 import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_bloc.dart';
 import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_event.dart';
@@ -62,7 +61,7 @@ class PieceCard extends StatelessWidget {
   void _navigateTo(BuildContext context) {
     final layoutBloc = getIt.get<ScrollAndRouteBloc>();
     layoutBloc.add(AddToHistory(route: fromRoute));
-    context.go('$piecesRoot/${piece.id}');
+    PieceRoute(id: piece.id).go(context);
   }
 
   Photo _photo(List<String> imageFileNames) {

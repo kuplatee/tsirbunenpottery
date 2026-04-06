@@ -1,31 +1,4 @@
-⏺ Assessment: Strong senior move. Type-safe routes eliminate an entire class of string-path bugs at       
-  compile time. The GoRouteData classes already exist — they're just not wired up. Finishing this is      
-  low-risk and pays forward.                                                                              
-                                                                                                          
-  ---                                                                                                   
-  Here's what needs to change across 4 files + codegen:                                                   
-                                                                                                          
-  1. routes.dart — the annotation is structurally broken
-  Currently all routes are nested as sub-routes of HomeRoute (producing paths like //pieces). Fix:        
-  - One @TypedGoRoute annotation per top-level route                                                      
-  - Sub-routes (:id) use relative path ':id', not absolute                                                
-  - Add buildPage override returning NoTransitionPage (replaces current manual pageBuilder)               
-  - Drop fromRoute from PieceRoute — it's not a URL param; leaving it would silently become a query param 
-                                                                                                          
-  2. route_controller.dart — replace the entire GoRoute tree with:                                        
-  GoRouter(routes: $appRoutes)                                                                            
-                                                                                                          
-  3. Two manual string navigation call sites:                                                             
-  - piece_card.dart:65 → PieceRoute(id: piece.id).go(context)
-  - pottery_grid.dart:156 → needs to dispatch to CollectionRoute or CategoryRoute based on                
-  widget.routeRoot (need to check)
-                                                                                                          
-  4. Run codegen after changes.
-                                                                                                          
-  footer.dart, drawer_route_item.dart, horizontal_navigation.dart already read from *Route.path static    
-  constants via RouteEnum — no change needed there.
-                                                                                                          
-  Want me to proceed with all of it?
+
 
 
 

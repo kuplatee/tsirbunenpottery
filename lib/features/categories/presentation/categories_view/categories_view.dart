@@ -76,6 +76,8 @@ class _CategoriesViewState extends State<CategoriesView>
                       gridParams: gridParams,
                       mode: ViewMode.categories,
                       routeRoot: categoriesRoot,
+                      onNavigate: (context, id) =>
+                          CategoryRoute(id: id).go(context),
                       isListWithSubRoutes: true,
                       isTheOnlySubView: widget.selectedCategoryId != null,
                     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
 import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_bloc.dart';
 import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_event.dart';
@@ -36,6 +35,7 @@ class ItemsGrid extends StatefulWidget {
   final String routeRoot;
   final bool isListWithSubRoutes;
   final bool isTheOnlySubView;
+  final void Function(BuildContext, String id)? onNavigate;
 
   const ItemsGrid({
     super.key,
@@ -50,6 +50,7 @@ class ItemsGrid extends StatefulWidget {
     required this.routeRoot,
     required this.isListWithSubRoutes,
     required this.isTheOnlySubView,
+    this.onNavigate,
   });
 
   String get scrollTargetName {
@@ -153,7 +154,7 @@ class _ItemsGridState extends State<ItemsGrid>
     final layoutBloc = getIt.get<ScrollAndRouteBloc>();
     // FIXME: Should we also reset possible current history?
     layoutBloc.add(AddToHistory(route: _fromRoute()));
-    context.go('${widget.routeRoot}/${widget.id}');
+    widget.onNavigate?.call(context, widget.id);
   }
 
   Size _photoSize(bool isNarrow) {

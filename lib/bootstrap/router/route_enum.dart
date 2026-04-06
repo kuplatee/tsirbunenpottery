@@ -28,10 +28,6 @@ extension PathExtension on RouteEnum {
       //   return DesignsRoute.path;
       case RouteEnum.contact:
         return ContactRoute.path;
-      // case RouteEnum.story:
-      //   return StoryRoute.path;
-      // default:
-      //   throw Exception('Route path not implemented!');
     }
   }
 }
@@ -51,10 +47,6 @@ extension PageNameExtension on RouteEnum {
         return Translation.collections;
       case RouteEnum.contact:
         return Translation.contact;
-      // case RouteEnum.story:
-      //   return Translation.story;
-      // default:
-      //   throw Exception('Page name not implemented!');
     }
   }
 }

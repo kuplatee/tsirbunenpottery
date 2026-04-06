@@ -21,136 +21,123 @@ const categoriesRoot = '/categories';
 const contactRoot = '/contact';
 const storyRoot = '/story';
 
-@TypedGoRoute<HomeRoute>(path: HomeRoute.path, routes: [
-  TypedGoRoute<HomeRoute>(path: HomeRoute.path),
-  TypedGoRoute<PiecesRoute>(path: PiecesRoute.path),
-  TypedGoRoute<CollectionsRoute>(path: CollectionsRoute.path),
-  TypedGoRoute<CollectionRoute>(path: CollectionRoute.path),
-  TypedGoRoute<CategoriesRoute>(path: CategoriesRoute.path),
-  TypedGoRoute<CategoryRoute>(path: CategoryRoute.path),
-  // TypedGoRoute<DesignsRoute>(path: DesignsRoute.path),
-  // TypedGoRoute<DesignRoute>(path: DesignRoute.path),
-  TypedGoRoute<ContactRoute>(path: ContactRoute.path),
-  // TypedGoRoute<StoryRoute>(path: StoryRoute.path),
-]) // NOTE: No space here, otherwise the go router builder code generation won't work!
+@TypedGoRoute<HomeRoute>(path: HomeRoute.path)
 @immutable
-class HomeRoute extends GoRouteData {
+class HomeRoute extends GoRouteData with $HomeRoute {
   static const path = '/';
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const HomePage();
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage(child: HomePage());
 }
 
+@TypedGoRoute<PiecesRoute>(
+  path: PiecesRoute.path,
+  routes: [TypedGoRoute<PieceRoute>(path: PieceRoute.path)],
+)
 @immutable
-class PiecesRoute extends GoRouteData {
+class PiecesRoute extends GoRouteData with $PiecesRoute {
   static const path = piecesRoot;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const PiecesPage();
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage(child: PiecesPage());
 }
 
 @immutable
-class PieceRoute extends GoRouteData {
-  static const path = '$piecesRoot/:id';
+class PieceRoute extends GoRouteData with $PieceRoute {
+  static const path = ':id';
   final String id;
-  final bool fromRoute;
 
-  const PieceRoute({
-    required this.id,
-    required this.fromRoute,
-  });
+  const PieceRoute({required this.id});
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return SinglePiecePage(id: id);
-  }
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      NoTransitionPage(child: SinglePiecePage(id: id));
 }
 
+@TypedGoRoute<CollectionsRoute>(
+  path: CollectionsRoute.path,
+  routes: [TypedGoRoute<CollectionRoute>(path: CollectionRoute.path)],
+)
 @immutable
-class CollectionsRoute extends GoRouteData {
+class CollectionsRoute extends GoRouteData with $CollectionsRoute {
   static const path = collectionsRoot;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const CollectionsPage();
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage(child: CollectionsPage());
 }
 
 @immutable
-class CollectionRoute extends GoRouteData {
-  static const path = '$collectionsRoot/:id';
+class CollectionRoute extends GoRouteData with $CollectionRoute {
+  static const path = ':id';
   final String id;
 
-  const CollectionRoute({
-    required this.id,
-  });
+  const CollectionRoute({required this.id});
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      CollectionsPage(selectedCollectionId: id);
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      NoTransitionPage(child: CollectionsPage(selectedCollectionId: id));
 }
 
+@TypedGoRoute<CategoriesRoute>(
+  path: CategoriesRoute.path,
+  routes: [TypedGoRoute<CategoryRoute>(path: CategoryRoute.path)],
+)
 @immutable
-class CategoriesRoute extends GoRouteData {
+class CategoriesRoute extends GoRouteData with $CategoriesRoute {
   static const path = categoriesRoot;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const CategoriesPage();
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage(child: CategoriesPage());
 }
 
 @immutable
-class CategoryRoute extends GoRouteData {
-  static const path = '$categoriesRoot/:id';
+class CategoryRoute extends GoRouteData with $CategoryRoute {
+  static const path = ':id';
   final String id;
 
-  const CategoryRoute({
-    required this.id,
-  });
+  const CategoryRoute({required this.id});
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      CategoriesPage(selectedCategoryId: id);
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      NoTransitionPage(child: CategoriesPage(selectedCategoryId: id));
 }
 
+// @TypedGoRoute<DesignsRoute>(
+//   path: DesignsRoute.path,
+//   routes: [TypedGoRoute<DesignRoute>(path: DesignRoute.path)],
+// )
 // @immutable
-// class DesignsRoute extends GoRouteData {
+// class DesignsRoute extends GoRouteData with $DesignsRoute {
 //   static const path = designsRoot;
 
 //   @override
-//   Widget build(BuildContext context, GoRouterState state) =>
-//       const DesignsPage();
+//   Page<void> buildPage(BuildContext context, GoRouterState state) =>
+//       const NoTransitionPage(child: DesignsPage());
 // }
 
 // @immutable
-// class DesignRoute extends GoRouteData {
-//   static const path = '$designsRoot/:id';
+// class DesignRoute extends GoRouteData with $DesignRoute {
+//   static const path = ':id';
 //   final String id;
-//   final bool fromRoute;
 
-//   const DesignRoute({
-//     required this.id,
-//     required this.fromRoute,
-//   });
+//   const DesignRoute({required this.id});
 
 //   @override
-//   Widget build(BuildContext context, GoRouterState state) {
-//     return DesignPage(id: id);
-//   }
+//   Page<void> buildPage(BuildContext context, GoRouterState state) =>
+//       NoTransitionPage(child: DesignPage(id: id));
 // }
 
+@TypedGoRoute<ContactRoute>(path: ContactRoute.path)
 @immutable
-class ContactRoute extends GoRouteData {
+class ContactRoute extends GoRouteData with $ContactRoute {
   static const path = contactRoot;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const ContactPage();
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage(child: ContactPage());
 }
 
-// @immutable
-// class StoryRoute extends GoRouteData {
-//   static const path = storyRoot;
-
-//   @override
-//   Widget build(BuildContext context, GoRouterState state) => const StoryPage();
-// }

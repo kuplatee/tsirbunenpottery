@@ -77,6 +77,8 @@ class _CollectionsViewState extends State<CollectionsView>
                       isTheOnlySubView: widget.selectedCollectionId != null,
                       mode: ViewMode.collections,
                       routeRoot: collectionsRoot,
+                      onNavigate: (context, id) =>
+                          CollectionRoute(id: id).go(context),
                       isListWithSubRoutes: true,
                     );
                   }),
