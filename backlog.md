@@ -9,11 +9,7 @@
   1. Silent error swallowing in CommonCloudService                                                                                                     
   print(e) + return null means Firestore failures are invisible. No user feedback, no debugging. Fix: propagate errors via Either/exceptions and handle
    them in blocs.                                                                                                                                      
-                                                                                                                                                       
-  2. Direct getIt.get<>() calls inside widgets                                                                                                         
-  Widgets reaching into the service locator directly couples presentation to DI infrastructure, kills testability, and breaks the BLoC contract. Fix:  
-  inject blocs only through BlocProvider/context.read<>().                                                                                             
-                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                  
   4. No error state rendered in UI                                                                                                                     
   Blocs have a Status.error field but zero pages actually check it. Users see an empty screen on Firestore failure. Fix: all BlocBuilders must handle  
   loading/error/data states explicitly.                                                                                                                

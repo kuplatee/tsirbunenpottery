@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:madmudmobile/core/state/navigation/navigation_bloc.dart';
 import 'package:madmudmobile/core/state/navigation/navigation_event.dart';
 import 'package:madmudmobile/bootstrap/router/routes.dart';
@@ -59,7 +59,7 @@ class PieceCard extends StatelessWidget {
   }
 
   void _navigateTo(BuildContext context) {
-    final navigationBloc = getIt.get<NavigationBloc>();
+    final navigationBloc = context.read<NavigationBloc>();
     navigationBloc.add(PushToHistory(route: fromRoute));
     PieceRoute(id: piece.id).go(context);
   }

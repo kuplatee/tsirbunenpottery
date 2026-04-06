@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
+import 'package:madmudmobile/core/scroll_position_cache/scroll_position_cache.dart';
 import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
 import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
 import 'package:madmudmobile/core/state/navigation/navigation_bloc.dart';
@@ -22,31 +23,34 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final routerConfig = RouteController().buildRouter();
 
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider.value(value: getIt.get<LanguageBloc>()),
-        BlocProvider.value(value: getIt.get<HomeBloc>()),
-        BlocProvider.value(value: getIt.get<PiecesBloc>()),
-        BlocProvider.value(value: getIt.get<DesignsBloc>()),
-        BlocProvider.value(value: getIt.get<CategoriesBloc>()),
-        BlocProvider.value(value: getIt.get<CollectionsBloc>()),
-        BlocProvider.value(value: getIt.get<NavigationBloc>()),
-      ],
-      child: BlocBuilder<LanguageBloc, LanguageState>(
-        builder: (BuildContext context, LanguageState state) {
-          final locale = state.language.toLocale();
+    return RepositoryProvider.value(
+      value: getIt.get<ScrollPositionCache>(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider.value(value: getIt.get<LanguageBloc>()),
+          BlocProvider.value(value: getIt.get<HomeBloc>()),
+          BlocProvider.value(value: getIt.get<PiecesBloc>()),
+          BlocProvider.value(value: getIt.get<DesignsBloc>()),
+          BlocProvider.value(value: getIt.get<CategoriesBloc>()),
+          BlocProvider.value(value: getIt.get<CollectionsBloc>()),
+          BlocProvider.value(value: getIt.get<NavigationBloc>()),
+        ],
+        child: BlocBuilder<LanguageBloc, LanguageState>(
+          builder: (BuildContext context, LanguageState state) {
+            final locale = state.language.toLocale();
 
-          return MaterialApp.router(
-            routerConfig: routerConfig,
-            theme: const AppTheme().themeData,
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: localizationsDelegates,
-            supportedLocales: AppLocale.supportedLocales,
-            locale: locale,
-            localeListResolutionCallback:
-                createLocaleListResolutionCallback(locale),
-          );
-        },
+            return MaterialApp.router(
+              routerConfig: routerConfig,
+              theme: const AppTheme().themeData,
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: localizationsDelegates,
+              supportedLocales: AppLocale.supportedLocales,
+              locale: locale,
+              localeListResolutionCallback:
+                  createLocaleListResolutionCallback(locale),
+            );
+          },
+        ),
       ),
     );
   }

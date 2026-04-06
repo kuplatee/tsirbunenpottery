@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
 import 'package:madmudmobile/core/state/navigation/navigation_bloc.dart';
 import 'package:madmudmobile/core/state/navigation/navigation_event.dart';
 import 'package:madmudmobile/core/state/navigation/navigation_state.dart';
@@ -40,7 +39,7 @@ class AppBarLeftActionsState extends State<AppBarLeftActions> {
     });
   }
 
-  _routeHasId(BuildContext context) {
+  bool _routeHasId(BuildContext context) {
     final fullPath =
         GoRouter.of(context).routerDelegate.currentConfiguration.fullPath;
     return Uri.parse(fullPath).toString().contains(':id');
@@ -49,7 +48,7 @@ class AppBarLeftActionsState extends State<AppBarLeftActions> {
   // FIXME: This fails if the user uses the browser's back button!!!
   void _goBack(BuildContext context) {
     final router = GoRouter.of(context);
-    final navigationBloc = getIt.get<NavigationBloc>();
+    final navigationBloc = context.read<NavigationBloc>();
 
     if (navigationBloc.state.history.isNotEmpty) {
       var lastFromRoute = navigationBloc.state.history.last;

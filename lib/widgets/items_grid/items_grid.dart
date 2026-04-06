@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:madmudmobile/core/state/navigation/navigation_bloc.dart';
 import 'package:madmudmobile/core/state/navigation/navigation_event.dart';
 import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
@@ -151,7 +151,7 @@ class _ItemsGridState extends State<ItemsGrid>
   }
 
   void _navigateTo(BuildContext context) {
-    final navigationBloc = getIt.get<NavigationBloc>();
+    final navigationBloc = context.read<NavigationBloc>();
     // FIXME: Should we also reset possible current history?
     navigationBloc.add(PushToHistory(route: _fromRoute()));
     widget.onNavigate?.call(context, widget.id);
