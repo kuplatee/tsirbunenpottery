@@ -2,7 +2,7 @@ enum ViewMode {
   pieces,
   categories,
   collections,
-  // designs,
+  designs,
 }
 
 extension ScrollTargetExtension on ViewMode {
@@ -18,8 +18,8 @@ extension ScrollTargetExtension on ViewMode {
         return collectionId == null
             ? 'collections'
             : 'collection-$direction-$collectionId';
-      // case ViewMode.designs:
-      //   return 'designs-$direction';
+      case ViewMode.designs:
+        return 'designs-$direction';
       case ViewMode.pieces:
         return 'pieces-$direction';
     }

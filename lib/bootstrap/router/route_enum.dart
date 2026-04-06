@@ -4,7 +4,7 @@ import 'package:madmudmobile/bootstrap/router/routes.dart';
 enum RouteEnum {
   home,
   pieces,
-  // designs,
+  designs,
   categories,
   collections,
   // story,
@@ -24,8 +24,8 @@ extension PathExtension on RouteEnum {
         return CategoriesRoute.path;
       case RouteEnum.collections:
         return CollectionsRoute.path;
-      // case RouteEnum.designs:
-      //   return DesignsRoute.path;
+      case RouteEnum.designs:
+        return DesignsRoute.path;
       case RouteEnum.contact:
         return ContactRoute.path;
     }
@@ -39,8 +39,8 @@ extension PageNameExtension on RouteEnum {
         return Translation.home;
       case RouteEnum.pieces:
         return Translation.pieces;
-      // case RouteEnum.designs:
-      //   return Translation.designs;
+      case RouteEnum.designs:
+        return Translation.designs;
       case RouteEnum.categories:
         return Translation.categories;
       case RouteEnum.collections:

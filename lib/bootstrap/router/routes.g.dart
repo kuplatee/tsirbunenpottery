@@ -11,6 +11,7 @@ List<RouteBase> get $appRoutes => [
       $piecesRoute,
       $collectionsRoute,
       $categoriesRoute,
+      $designsRoute,
       $contactRoute,
     ];
 
@@ -202,6 +203,33 @@ mixin $CategoryRoute on GoRouteData {
   @override
   String get location => GoRouteData.$location(
         '/categories/${Uri.encodeComponent(_self.id)}',
+      );
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $designsRoute => GoRouteData.$route(
+      path: '/designs',
+      factory: $DesignsRoute._fromState,
+    );
+
+mixin $DesignsRoute on GoRouteData {
+  static DesignsRoute _fromState(GoRouterState state) => DesignsRoute();
+
+  @override
+  String get location => GoRouteData.$location(
+        '/designs',
       );
 
   @override

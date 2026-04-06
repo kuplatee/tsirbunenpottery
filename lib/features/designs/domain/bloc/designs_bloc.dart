@@ -26,6 +26,7 @@ class DesignsBloc extends Bloc<DesignsEvent, DesignsState> {
       emit(DesignsState(
         designsById: data.designsById,
         imageFileNamesByDesignId: data.imageFileNamesByDesignId,
+        piecesByDesignId: data.piecesByDesignId,
         blocStatus: const BlocStatus(Status.ok),
       ));
     } catch (e) {

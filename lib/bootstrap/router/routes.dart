@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:madmudmobile/features/collections/presentation/pages/collections_page.dart';
 import 'package:madmudmobile/features/contact/presentation/pages/contact_page.dart';
 import 'package:madmudmobile/features/categories/presentation/pages/categories_page.dart';
+import 'package:madmudmobile/features/designs/presentation/pages/designs_page.dart';
 import 'package:madmudmobile/features/home/presentation/pages/home_page.dart';
 import 'package:madmudmobile/features/pieces/presentation/pages/single_piece_page.dart';
 import 'package:madmudmobile/features/pieces/presentation/pages/pieces_page.dart';
@@ -17,7 +18,7 @@ part 'routes.g.dart';
 const piecesRoot = '/pieces';
 const collectionsRoot = '/collections';
 const categoriesRoot = '/categories';
-// const designsRoot = '/designs';
+const designsRoot = '/designs';
 const contactRoot = '/contact';
 const storyRoot = '/story';
 
@@ -106,30 +107,15 @@ class CategoryRoute extends GoRouteData with $CategoryRoute {
       NoTransitionPage(child: CategoriesPage(selectedCategoryId: id));
 }
 
-// @TypedGoRoute<DesignsRoute>(
-//   path: DesignsRoute.path,
-//   routes: [TypedGoRoute<DesignRoute>(path: DesignRoute.path)],
-// )
-// @immutable
-// class DesignsRoute extends GoRouteData with $DesignsRoute {
-//   static const path = designsRoot;
+@TypedGoRoute<DesignsRoute>(path: DesignsRoute.path)
+@immutable
+class DesignsRoute extends GoRouteData with $DesignsRoute {
+  static const path = designsRoot;
 
-//   @override
-//   Page<void> buildPage(BuildContext context, GoRouterState state) =>
-//       const NoTransitionPage(child: DesignsPage());
-// }
-
-// @immutable
-// class DesignRoute extends GoRouteData with $DesignRoute {
-//   static const path = ':id';
-//   final String id;
-
-//   const DesignRoute({required this.id});
-
-//   @override
-//   Page<void> buildPage(BuildContext context, GoRouterState state) =>
-//       NoTransitionPage(child: DesignPage(id: id));
-// }
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage(child: DesignsPage());
+}
 
 @TypedGoRoute<ContactRoute>(path: ContactRoute.path)
 @immutable
