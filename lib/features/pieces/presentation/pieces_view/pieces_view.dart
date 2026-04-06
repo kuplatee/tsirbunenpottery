@@ -5,9 +5,9 @@ import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
 import 'package:madmudmobile/features/pieces/domain/bloc/pieces_bloc.dart';
 import 'package:madmudmobile/features/pieces/domain/bloc/pieces_state.dart';
 import 'package:madmudmobile/bootstrap/router/routes.dart';
-import 'package:madmudmobile/widgets/pottery_grid/models.dart';
-import 'package:madmudmobile/widgets/pottery_grid/pottery_grid.dart';
-import 'package:madmudmobile/widgets/pottery_grid/scroll_position_mixin.dart';
+import 'package:madmudmobile/widgets/items_grid/models.dart';
+import 'package:madmudmobile/widgets/items_grid/items_grid.dart';
+import 'package:madmudmobile/widgets/items_grid/scroll_position_mixin.dart';
 import 'package:madmudmobile/localization/app_locale.dart';
 import 'package:madmudmobile/localization/translation.dart';
 import 'package:madmudmobile/widgets/footer/footer.dart';
@@ -44,7 +44,7 @@ class _PiecesViewState extends State<PiecesView>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  PotteryGrid(
+                  ItemsGrid(
                     id: 'pieces',
                     title: context.local(Translation.allPieces),
                     designs: allDesigns,

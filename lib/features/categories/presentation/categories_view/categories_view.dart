@@ -6,9 +6,9 @@ import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dar
 import 'package:madmudmobile/features/categories/domain/bloc/categories_state.dart';
 import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
 import 'package:madmudmobile/bootstrap/router/routes.dart';
-import 'package:madmudmobile/widgets/pottery_grid/models.dart';
-import 'package:madmudmobile/widgets/pottery_grid/pottery_grid.dart';
-import 'package:madmudmobile/widgets/pottery_grid/scroll_position_mixin.dart';
+import 'package:madmudmobile/widgets/items_grid/models.dart';
+import 'package:madmudmobile/widgets/items_grid/items_grid.dart';
+import 'package:madmudmobile/widgets/items_grid/scroll_position_mixin.dart';
 import 'package:madmudmobile/widgets/footer/footer.dart';
 import 'package:madmudmobile/widgets/page_base/page_base.dart';
 
@@ -66,7 +66,7 @@ class _CategoriesViewState extends State<CategoriesView>
                     final category = state.categories
                         .firstWhere((c) => c.id == categoryId);
 
-                    return PotteryGrid(
+                    return ItemsGrid(
                       id: categoryId,
                       title: category.names[language] ?? '',
                       designs: designs,

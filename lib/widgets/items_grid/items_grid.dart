@@ -4,13 +4,13 @@ import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
 import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_bloc.dart';
 import 'package:madmudmobile/core/state/scroll_and_route_bloc/scroll_and_route_event.dart';
 import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
-import 'package:madmudmobile/widgets/pottery_grid/piece_card.dart';
+import 'package:madmudmobile/widgets/items_grid/piece_card.dart';
 import 'package:madmudmobile/widgets/action_button/action_button.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/widgets/pottery_grid/models.dart';
-import 'package:madmudmobile/widgets/pottery_grid/scroll_position_mixin.dart';
-import 'package:madmudmobile/widgets/pottery_grid/title_with_hover_effect.dart';
+import 'package:madmudmobile/widgets/items_grid/models.dart';
+import 'package:madmudmobile/widgets/items_grid/scroll_position_mixin.dart';
+import 'package:madmudmobile/widgets/items_grid/title_with_hover_effect.dart';
 import 'package:madmudmobile/localization/languages.dart';
 
 // Note: Let's subtract some space from the photo width (if single row) as a guide to
@@ -23,7 +23,7 @@ const double defaultMaxPhotoWidth = 300.0;
 const double sideMargin = 25.0;
 const double showExpandBreakpoint = 700.0;
 
-class PotteryGrid extends StatefulWidget {
+class ItemsGrid extends StatefulWidget {
   final String title;
   final String id;
   final List<Design> designs;
@@ -37,7 +37,7 @@ class PotteryGrid extends StatefulWidget {
   final bool isListWithSubRoutes;
   final bool isTheOnlySubView;
 
-  const PotteryGrid({
+  const ItemsGrid({
     super.key,
     required this.title,
     required this.id,
@@ -57,11 +57,11 @@ class PotteryGrid extends StatefulWidget {
   }
 
   @override
-  State<PotteryGrid> createState() => _PotteryGridState();
+  State<ItemsGrid> createState() => _ItemsGridState();
 }
 
-class _PotteryGridState extends State<PotteryGrid>
-    with ScrollPositionMixin<PotteryGrid> {
+class _ItemsGridState extends State<ItemsGrid>
+    with ScrollPositionMixin<ItemsGrid> {
   @override
   String get scrollTargetName => widget.scrollTargetName;
   bool expandAll = false;
