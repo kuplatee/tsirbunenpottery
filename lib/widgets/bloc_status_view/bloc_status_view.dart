@@ -21,6 +21,7 @@ class BlocStatusView extends StatelessWidget {
     }
 
     if (status.status == Status.error) {
+      debugPrint('BlocStatusView error: ${status.message}');
       return Center(
         child: Text(
           context.local(Translation.dataLoadError),

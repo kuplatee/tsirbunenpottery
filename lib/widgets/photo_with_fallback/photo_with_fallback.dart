@@ -40,6 +40,8 @@ class PhotoWithFallback extends StatefulWidget {
 class _PhotoWithFallbackState extends State<PhotoWithFallback>
     with SingleTickerProviderStateMixin {
   NetworkImage? _image;
+  ImageStream? _imageStream;
+  ImageStreamListener? _imageStreamListener;
   bool _isLoading = true;
   AnimationController? _controller;
   Animation<double>? _fadeInOpacityAnimation;
@@ -132,9 +134,17 @@ class _PhotoWithFallbackState extends State<PhotoWithFallback>
 
   @override
   void dispose() {
-    if (_controller != null) _controller!.dispose();
-    // FIXME: HOW TO DISPOSE OF THE LISTENER?
+    _controller?.dispose();
+    _removeImageListener();
     super.dispose();
+  }
+
+  void _removeImageListener() {
+    if (_imageStreamListener != null) {
+      _imageStream?.removeListener(_imageStreamListener!);
+      _imageStream = null;
+      _imageStreamListener = null;
+    }
   }
 
   @override
@@ -159,10 +169,11 @@ class _PhotoWithFallbackState extends State<PhotoWithFallback>
         _image = null;
       });
 
-      // Dispose any previous controller before creating a new one
+      // Dispose any previous controller and image listener before creating new ones
       _controller?.dispose();
       _controller = null;
       _fadeInOpacityAnimation = null;
+      _removeImageListener();
 
       _createFadeImageInAnimation();
       _animateImageFadeInOnImageUploadCompleted();
@@ -205,8 +216,10 @@ class _PhotoWithFallbackState extends State<PhotoWithFallback>
       },
     );
 
+    _imageStreamListener = listener;
     _image = NetworkImage(widget.photo!.url);
-    _image?.resolve(const ImageConfiguration()).addListener(listener);
+    _imageStream = _image!.resolve(const ImageConfiguration());
+    _imageStream!.addListener(_imageStreamListener!);
   }
 
   // _shaderCallback() {
