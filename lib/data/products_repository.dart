@@ -87,8 +87,8 @@ class ProductsRepository {
     return Piece(
       id: data['id'] as String,
       designId: designId,
-      imageFileNames: ((data['imageFileNames'] ?? []) as List<dynamic>)
-          .map((e) => e as String)
+      imageFileNames: (data['imageFileNames'] as List<dynamic>? ?? [])
+          .whereType<String>()
           .toList(),
       collectionId: _idOfRef(data, collections, 'collectionId'),
       sold: data['sold'] as bool? ?? false,
@@ -104,27 +104,36 @@ class ProductsRepository {
 
   Map<Language, String> _toStringTranslations(
       Map<String, dynamic> data, String fieldName) {
-    final namesMap = data[fieldName] as Map<String, dynamic>;
+    final raw = data[fieldName];
+    if (raw is! Map<String, dynamic>) return {};
     final result = <Language, String>{};
-    for (final entry in namesMap.entries) {
+    for (final entry in raw.entries) {
       final language = _toLanguage(entry.key);
-      if (language != null) result[language] = entry.value as String;
+      if (language != null && entry.value is String) {
+        result[language] = entry.value as String;
+      }
     }
     return result;
   }
 
   Map<Language, Map<String, String>> _toStringMapTranslations(
       Map<String, dynamic> data, String fieldName) {
-    final detailsRaw = data[fieldName] as Map<String, dynamic>;
+    final raw = data[fieldName];
+    if (raw is! Map<String, dynamic>) return {};
     final result = <Language, Map<String, String>>{};
-    for (final entry in detailsRaw.entries) {
+    for (final entry in raw.entries) {
       final language = _toLanguage(entry.key);
       if (language == null) continue;
-      final parsedMap = entry.value is String
-          ? jsonDecode(entry.value) as Map<String, dynamic>
-          : (entry.value as Map).cast<String, dynamic>();
-      result[language] =
-          parsedMap.map((k, v) => MapEntry(k, v as String));
+      try {
+        final Map<String, dynamic> parsedMap = entry.value is String
+            ? jsonDecode(entry.value as String) as Map<String, dynamic>
+            : (entry.value as Map).cast<String, dynamic>();
+        result[language] = parsedMap.map(
+          (k, v) => MapEntry(k, v is String ? v : v.toString()),
+        );
+      } catch (_) {
+        continue;
+      }
     }
     return result;
   }
@@ -134,7 +143,9 @@ class ProductsRepository {
     List<T> items,
     String fieldName,
   ) {
-    final refs = data[fieldName] as List<dynamic>;
+    final raw = data[fieldName];
+    if (raw is! List) return [];
+    final refs = raw;
     final refIds = refs.map((e) {
       if (e is DocumentReference) return e.id;
       return e as String;

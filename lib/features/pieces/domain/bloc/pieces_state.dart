@@ -31,5 +31,5 @@ class PiecesState extends Equatable {
       );
 
   @override
-  List<Object?> get props => [blocStatus, piecesById];
+  List<Object?> get props => [blocStatus, piecesById, designsById, imageFileNamesByDesignId, pieceIdsByDesignId];
 }
