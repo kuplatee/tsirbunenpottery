@@ -74,6 +74,7 @@ class _ItemsGridState extends State<ItemsGrid>
     final fromRoute = _fromRoute();
     final horizontalAlignment =
         isNarrow ? CrossAxisAlignment.center : CrossAxisAlignment.start;
+    final designsById = {for (final d in widget.designs) d.id: d};
 
     return Column(
       crossAxisAlignment: horizontalAlignment,
@@ -112,36 +113,40 @@ class _ItemsGridState extends State<ItemsGrid>
               ? Wrap(
                   spacing: horizontalGridSpacing,
                   runSpacing: verticalGridSpacing,
-                  children: widget.pieces.map((piece) {
-                    final design = widget.designs
-                        .firstWhere((d) => d.id == piece.designId);
-                    return PieceCard(
-                      piece: piece,
-                      design: design,
-                      language: widget.language,
-                      size: size,
-                      fromRoute: fromRoute,
-                    );
+                  children: widget.pieces.expand((piece) {
+                    final design = designsById[piece.designId];
+                    if (design == null) return const <Widget>[];
+                    return [
+                      PieceCard(
+                        piece: piece,
+                        design: design,
+                        language: widget.language,
+                        size: size,
+                        fromRoute: fromRoute,
+                      ),
+                    ];
                   }).toList(),
                 )
               : SingleChildScrollView(
                   controller: scrollController,
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: widget.pieces.map((piece) {
-                      final design = widget.designs
-                          .firstWhere((d) => d.id == piece.designId);
-                      return Padding(
-                        padding:
-                            const EdgeInsets.only(right: horizontalGridSpacing),
-                        child: PieceCard(
-                          piece: piece,
-                          design: design,
-                          language: widget.language,
-                          size: size,
-                          fromRoute: fromRoute,
+                    children: widget.pieces.expand((piece) {
+                      final design = designsById[piece.designId];
+                      if (design == null) return const <Widget>[];
+                      return [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              right: horizontalGridSpacing),
+                          child: PieceCard(
+                            piece: piece,
+                            design: design,
+                            language: widget.language,
+                            size: size,
+                            fromRoute: fromRoute,
+                          ),
                         ),
-                      );
+                      ];
                     }).toList(),
                   ),
                 ),

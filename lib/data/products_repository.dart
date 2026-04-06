@@ -95,34 +95,38 @@ class ProductsRepository {
     );
   }
 
+  Language? _toLanguage(String key) {
+    for (final lang in Language.values) {
+      if (lang.name == key) return lang;
+    }
+    return null;
+  }
+
   Map<Language, String> _toStringTranslations(
       Map<String, dynamic> data, String fieldName) {
     final namesMap = data[fieldName] as Map<String, dynamic>;
-    return namesMap.map(
-      (key, value) => MapEntry(
-        Language.values.firstWhere((e) => e.name == key),
-        value as String,
-      ),
-    );
+    final result = <Language, String>{};
+    for (final entry in namesMap.entries) {
+      final language = _toLanguage(entry.key);
+      if (language != null) result[language] = entry.value as String;
+    }
+    return result;
   }
 
   Map<Language, Map<String, String>> _toStringMapTranslations(
       Map<String, dynamic> data, String fieldName) {
     final detailsRaw = data[fieldName] as Map<String, dynamic>;
-    return detailsRaw.map(
-      (key, value) {
-        final parsedMap = value is String
-            ? jsonDecode(value) as Map<String, dynamic>
-            : (value as Map).cast<String, dynamic>();
-        final convertedMap = parsedMap.map(
-          (innerKey, innerValue) => MapEntry(innerKey, innerValue as String),
-        );
-        return MapEntry(
-          Language.values.firstWhere((e) => e.name == key),
-          convertedMap,
-        );
-      },
-    );
+    final result = <Language, Map<String, String>>{};
+    for (final entry in detailsRaw.entries) {
+      final language = _toLanguage(entry.key);
+      if (language == null) continue;
+      final parsedMap = entry.value is String
+          ? jsonDecode(entry.value) as Map<String, dynamic>
+          : (entry.value as Map).cast<String, dynamic>();
+      result[language] =
+          parsedMap.map((k, v) => MapEntry(k, v as String));
+    }
+    return result;
   }
 
   List<String> _idsOfRefs<T>(

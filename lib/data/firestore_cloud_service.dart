@@ -13,8 +13,10 @@ class FirestoreCloudService implements CloudService {
     required String documentId,
   }) async {
     final ref = _firestore.collection(collection);
-    final docs = await ref.get();
-    final doc = docs.docs.firstWhere((d) => d.id == documentId);
+    final snapshot = await ref.get();
+    final matching = snapshot.docs.where((d) => d.id == documentId);
+    if (matching.isEmpty) return null;
+    final doc = matching.first;
     return {'id': doc.id, ...doc.data()};
   }
 

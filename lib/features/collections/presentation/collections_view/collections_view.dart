@@ -43,6 +43,9 @@ class _CollectionsViewState extends State<CollectionsView>
               final groupedDesigns = _designsToShow(state);
               final allPieces = state.piecesById.values.toList();
               final gridParams = _gridParams(context, groupedDesigns);
+              final collectionsById = {
+                for (final c in state.collections) c.id: c
+              };
 
               return BlocStatusView(
                 status: state.blocStatus,
@@ -50,8 +53,11 @@ class _CollectionsViewState extends State<CollectionsView>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ...groupedDesigns.entries.map((entry) {
+                  ...groupedDesigns.entries.expand((entry) {
                     final collectionId = entry.key;
+                    final collection = collectionsById[collectionId];
+                    if (collection == null) return const <Widget>[];
+
                     final pieceIdsByDesignId = entry.value;
 
                     final designs = pieceIdsByDesignId.keys
@@ -66,10 +72,7 @@ class _CollectionsViewState extends State<CollectionsView>
                         .where((p) => pieceIds.contains(p.id))
                         .toList();
 
-                    final collection = state.collections
-                        .firstWhere((c) => c.id == collectionId);
-
-                    return ItemsGrid(
+                    return [ItemsGrid(
                       id: collectionId,
                       title: collection.names[language] ?? '',
                       designs: designs,
@@ -83,7 +86,7 @@ class _CollectionsViewState extends State<CollectionsView>
                       onNavigate: (context, id) =>
                           CollectionRoute(id: id).go(context),
                       isListWithSubRoutes: true,
-                    );
+                    )];
                   }),
                   const Footer(),
                 ],

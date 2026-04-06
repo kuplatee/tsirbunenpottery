@@ -43,6 +43,9 @@ class _CategoriesViewState extends State<CategoriesView>
               final groupedDesigns = _designsToShow(state);
               final allPieces = state.piecesById.values.toList();
               final gridParams = _gridParams(context, groupedDesigns);
+              final categoriesById = {
+                for (final c in state.categories) c.id: c
+              };
 
               return BlocStatusView(
                 status: state.blocStatus,
@@ -50,8 +53,11 @@ class _CategoriesViewState extends State<CategoriesView>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ...groupedDesigns.entries.map((entry) {
+                  ...groupedDesigns.entries.expand((entry) {
                     final categoryId = entry.key;
+                    final category = categoriesById[categoryId];
+                    if (category == null) return const <Widget>[];
+
                     final pieceIdsByDesignId = entry.value;
 
                     final designs = pieceIdsByDesignId.keys
@@ -66,10 +72,7 @@ class _CategoriesViewState extends State<CategoriesView>
                         .where((p) => pieceIds.contains(p.id))
                         .toList();
 
-                    final category = state.categories
-                        .firstWhere((c) => c.id == categoryId);
-
-                    return ItemsGrid(
+                    return [ItemsGrid(
                       id: categoryId,
                       title: category.names[language] ?? '',
                       designs: designs,
@@ -83,7 +86,7 @@ class _CategoriesViewState extends State<CategoriesView>
                           CategoryRoute(id: id).go(context),
                       isListWithSubRoutes: true,
                       isTheOnlySubView: widget.selectedCategoryId != null,
-                    );
+                    )];
                   }),
                   const Footer(),
                 ],
