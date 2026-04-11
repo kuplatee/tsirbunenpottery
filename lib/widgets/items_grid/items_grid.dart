@@ -18,6 +18,7 @@ const double defaultMinPhotoWidth = 175.0;
 const double defaultMaxPhotoWidth = 300.0;
 const double sideMargin = 25.0;
 const double showExpandBreakpoint = 700.0;
+const int kNarrowColumnsCount = 3;
 
 class ItemsGrid extends StatefulWidget {
   final String title;
@@ -58,6 +59,21 @@ class _ItemsGridState extends State<ItemsGrid>
   @override
   String get scrollTargetName => widget.scrollTargetName;
   bool expandAll = false;
+  late Map<String, Design> _designsById;
+
+  @override
+  void initState() {
+    super.initState();
+    _designsById = {for (final d in widget.designs) d.id: d};
+  }
+
+  @override
+  void didUpdateWidget(ItemsGrid oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.designs != oldWidget.designs) {
+      _designsById = {for (final d in widget.designs) d.id: d};
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +81,7 @@ class _ItemsGridState extends State<ItemsGrid>
     final size = _photoSize(isNarrow);
     final horizontalAlignment =
         isNarrow ? CrossAxisAlignment.center : CrossAxisAlignment.start;
-    final designsById = {for (final d in widget.designs) d.id: d};
+    final designsById = _designsById;
 
     return Column(
       crossAxisAlignment: horizontalAlignment,
@@ -150,7 +166,7 @@ class _ItemsGridState extends State<ItemsGrid>
 
   Size _photoSize(bool isNarrow) {
     final subtraction = widget.isTheOnlySubView ? 0.0 : singleRowSubtraction;
-    final availableWidthPerPhoto = (widget.gridParams.availableWidth) / 3;
+    final availableWidthPerPhoto = widget.gridParams.availableWidth / kNarrowColumnsCount;
     final adjustedPhotoWidth =
         isNarrow ? availableWidthPerPhoto : widget.gridParams.photoWidth;
     final width = (adjustedPhotoWidth - horizontalGridSpacing) - subtraction;
