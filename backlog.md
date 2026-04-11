@@ -16,13 +16,7 @@
                                                                                                       
   ---             
   Design Smells
-               
-  bloc_status_view.dart:19 — status.status == Status.loading — double .status is a naming smell.
-  BlocStatus wraps a field called status of type Status. The outer type and inner field share the same
-   concept. Better: status.isLoading or rename the wrapper to BlocState.                            
-                                                                                                      
-  app_bar_customized.dart:11–12 — mobilePadding and desktopPadding are both 10.0. The conditional
-  branching at lines 53–55 is dead code; the distinction is meaningless.                              
+         
                                                                                                       
   items_grid.dart:77 — designsById map is rebuilt on every build() call. Since widget.designs is an
   input, this should be computed in initState/didUpdateWidget or via a late field.                    
@@ -33,21 +27,12 @@
   ---                             
   Code Hygiene                                                                                        
                   
-                                                      
-                                                                                                      
-  Dead/commented-out code — multiple files:
-  - app_bar_customized.dart:45 — commented-out color option                                           
+                                         
                                                            
   Unresolved FIXMEs in production code — app_bar_left_actions.dart:48,55, items_grid.dart:84,160.   
   FIXME comments should be tracked as issues, not left inline indefinitely.                           
                                                                                                     
-  drawer_for_app_bar.dart:38 — The outer .toList() on a list literal is redundant.                    
-                                                                                                    
-  items_grid.dart:83 — EdgeInsets.only(right: 0.0, top: 30.0) — right: 0.0 is the default; omit it.
 
-
-             
-  
 
   3. Tests are broken                                                                                                                                  
   products_bloc_test.dart lines 39 and 47 call ProductsRepository() with no arguments, but the constructor requires CommonCloudService. These tests

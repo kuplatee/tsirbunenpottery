@@ -16,11 +16,11 @@ class BlocStatusView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (status.status == Status.loading) {
+    if (status.isLoading) {
       return const Center(child: ProgressIndicatorXL());
     }
 
-    if (status.status == Status.error) {
+    if (status.isError) {
       debugPrint('BlocStatusView error: ${status.message}');
       return Center(
         child: Text(

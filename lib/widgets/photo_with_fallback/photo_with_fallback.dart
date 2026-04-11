@@ -63,53 +63,56 @@ class _PhotoWithFallbackState extends State<PhotoWithFallback>
       );
     }
 
-    return MouseRegion(
-      onEnter: (_) {
-        if (widget.zoomOnHover) setState(() => _isHovering = true);
-      },
-      onExit: (_) {
-        if (widget.zoomOnHover) setState(() => _isHovering = false);
-      },
-      child: ClipRect(
-        child: SizedBox(
-          width: widget.size.width,
-          height: widget.size.height,
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              Positioned.fill(
-                child: AnimatedScale(
-                  scale: _isHovering ? 1.1 : 1.0,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeOut,
-                  // Note: This hack is to remove the vertical thin line
-                  // that appears in mobile.
-                  child: Padding(
-                    padding: const EdgeInsets.all(1.0),
-                    child: Image(
-                      image: _image!,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-              if (widget.isShadeMasked)
+    return FadeTransition(
+      opacity: _fadeInOpacityAnimation!,
+      child: MouseRegion(
+        onEnter: (_) {
+          if (widget.zoomOnHover) setState(() => _isHovering = true);
+        },
+        onExit: (_) {
+          if (widget.zoomOnHover) setState(() => _isHovering = false);
+        },
+        child: ClipRect(
+          child: SizedBox(
+            width: widget.size.width,
+            height: widget.size.height,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
                 Positioned.fill(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: RadialGradient(
-                        center: Alignment.center,
-                        radius: 0.5,
-                        colors: [
-                          colors.surface.withValues(alpha: 0),
-                          colors.surface,
-                        ],
-                        stops: [0.2, 1.0],
+                  child: AnimatedScale(
+                    scale: _isHovering ? 1.1 : 1.0,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeOut,
+                    // Note: This hack is to remove the vertical thin line
+                    // that appears in mobile.
+                    child: Padding(
+                      padding: const EdgeInsets.all(1.0),
+                      child: Image(
+                        image: _image!,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
                 ),
-            ],
+                if (widget.isShadeMasked)
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: RadialGradient(
+                          center: Alignment.center,
+                          radius: 0.5,
+                          colors: [
+                            colors.surface.withValues(alpha: 0),
+                            colors.surface,
+                          ],
+                          stops: [0.2, 1.0],
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
@@ -221,6 +224,4 @@ class _PhotoWithFallbackState extends State<PhotoWithFallback>
     _imageStream = _image!.resolve(const ImageConfiguration());
     _imageStream!.addListener(_imageStreamListener!);
   }
-
-
 }
