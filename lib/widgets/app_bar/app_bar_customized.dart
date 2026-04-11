@@ -8,8 +8,7 @@ import 'package:madmudmobile/widgets/horizontal_navigation/horizontal_navigation
 const double appBarHeight = 81.0;
 const double heightBreakpoint = 800.0;
 const double widthBreakpoint = 500.0;
-const double mobilePadding = 10.0;
-const double desktopPadding = 10.0;
+const double padding = 10.0;
 
 class AppBarCustomized extends StatelessWidget implements PreferredSizeWidget {
   const AppBarCustomized({super.key});
@@ -20,7 +19,7 @@ class AppBarCustomized extends StatelessWidget implements PreferredSizeWidget {
       height: appBarHeight,
       decoration: _decoration(context),
       child: Padding(
-        padding: _padding(context),
+        padding: _padding(),
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -47,12 +46,11 @@ class AppBarCustomized extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  EdgeInsets _padding(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+  EdgeInsets _padding() {
     final bottom =
-        size.height > heightBreakpoint ? desktopPadding : mobilePadding;
+         padding;
     final horizontal =
-        size.width > widthBreakpoint ? desktopPadding : mobilePadding;
+       padding;
 
     return EdgeInsets.only(left: horizontal, right: horizontal, bottom: bottom);
   }
