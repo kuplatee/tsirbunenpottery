@@ -82,10 +82,8 @@ class _CollectionsViewState extends State<CollectionsView>
                       gridParams: gridParams,
                       isTheOnlySubView: widget.selectedCollectionId != null,
                       mode: ViewMode.collections,
-                      routeRoot: collectionsRoot,
                       onNavigate: (context, id) =>
-                          CollectionRoute(id: id).go(context),
-                      isListWithSubRoutes: true,
+                          CollectionRoute(id: id).push(context),
                     )];
                   }),
                   const Footer(),

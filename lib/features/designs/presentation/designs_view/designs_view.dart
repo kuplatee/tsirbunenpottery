@@ -4,7 +4,6 @@ import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
 import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
 import 'package:madmudmobile/features/designs/domain/bloc/designs_bloc.dart';
 import 'package:madmudmobile/features/designs/domain/bloc/designs_state.dart';
-import 'package:madmudmobile/bootstrap/router/routes.dart';
 import 'package:madmudmobile/widgets/items_grid/models.dart';
 import 'package:madmudmobile/widgets/items_grid/items_grid.dart';
 import 'package:madmudmobile/widgets/items_grid/scroll_position_mixin.dart';
@@ -59,8 +58,6 @@ class _DesignsViewState extends State<DesignsView>
                       language: language,
                       gridParams: gridParams,
                       mode: ViewMode.designs,
-                      routeRoot: designsRoot,
-                      isListWithSubRoutes: false,
                       isTheOnlySubView: true,
                     );
                   }),

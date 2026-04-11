@@ -4,7 +4,6 @@ import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
 import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
 import 'package:madmudmobile/features/pieces/domain/bloc/pieces_bloc.dart';
 import 'package:madmudmobile/features/pieces/domain/bloc/pieces_state.dart';
-import 'package:madmudmobile/bootstrap/router/routes.dart';
 import 'package:madmudmobile/widgets/items_grid/models.dart';
 import 'package:madmudmobile/widgets/items_grid/items_grid.dart';
 import 'package:madmudmobile/widgets/items_grid/scroll_position_mixin.dart';
@@ -56,8 +55,6 @@ class _PiecesViewState extends State<PiecesView>
                     language: language,
                     gridParams: gridParams,
                     mode: ViewMode.pieces,
-                    routeRoot: piecesRoot,
-                    isListWithSubRoutes: false,
                     isTheOnlySubView: true,
                   ),
                   const Footer(),

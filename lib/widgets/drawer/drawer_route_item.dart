@@ -30,9 +30,11 @@ class DrawerRouteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    final generalStyle = Theme.of(context).textTheme.headlineMedium!.copyWith(
-          fontSize: fontSize,
-        );
+    final generalStyle =
+        Theme.of(context).textTheme.headlineMedium?.copyWith(
+              fontSize: fontSize,
+            ) ??
+        const TextStyle(fontSize: fontSize);
     final emphasizedStyle = generalStyle.copyWith(
       fontWeight: FontWeight.w800,
     );

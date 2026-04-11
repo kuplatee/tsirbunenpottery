@@ -101,7 +101,6 @@ Commented-out (not active): `designs`, `story`
 | Type | Kind | Responsibility |
 |---|---|---|
 | `LanguageBloc` | BLoC | Runtime language toggle (pure UI state) |
-| `NavigationBloc` | BLoC | Back-navigation history stack — drives AppBar back arrow |
 | `HomeBloc` | BLoC | Fetch home page image filename from Firestore |
 | `PiecesBloc` | BLoC | Hold shaped pieces + designs data for the Pieces route |
 | `DesignsBloc` | BLoC | Hold shaped designs data (future Designs route) |
@@ -110,6 +109,9 @@ Commented-out (not active): `designs`, `story`
 | `ScrollPositionCache` | plain class | Key→offset map for scroll restoration; never drives rebuilds |
 
 BLoCs are seeded with initial events in `service_locator.dart` and exposed to the widget tree via `MultiBlocProvider` in `App`.
+
+## Back navigation
+Detail routes (e.g. `/pieces/:id`, `/categories/:id`) are pushed via go_router's `.push()`, which maintains a proper browser history stack. `AppBarLeftActions` detects detail routes via `GoRouterState.of(context).pathParameters.containsKey('id')` and calls `GoRouter.of(context).pop()` — no custom history stack needed.
 
 ## Data flow
 ```

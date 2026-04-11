@@ -112,7 +112,7 @@ class _ContactFormState extends State<ContactForm> {
       filled: true,
       fillColor: inputBackgroundPale,
       border: _inputBorder(),
-      hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+      hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
             fontSize: 16.0,
             fontWeight: FontWeight.w500,
             color: Theme.of(context).colorScheme.secondary,
@@ -128,24 +128,27 @@ class _ContactFormState extends State<ContactForm> {
   }
 
   TextStyle _titleStyle(TextTheme textTheme, ColorScheme colors) {
-    return textTheme.headlineMedium!.copyWith(
-      fontSize: 20.0,
-      color: colors.primary,
-    );
+    return textTheme.headlineMedium?.copyWith(
+          fontSize: 20.0,
+          color: colors.primary,
+        ) ??
+        const TextStyle();
   }
 
   TextStyle _inputTextStyle(TextTheme textTheme, ColorScheme colors) {
-    return textTheme.bodyMedium!.copyWith(
-      fontSize: 16.0,
-      fontWeight: FontWeight.w500,
-      color: colors.primary,
-    );
+    return textTheme.bodyMedium?.copyWith(
+          fontSize: 16.0,
+          fontWeight: FontWeight.w500,
+          color: colors.primary,
+        ) ??
+        const TextStyle();
   }
 
   TextStyle _textStyle(TextTheme textTheme, ColorScheme colors) {
-    return textTheme.titleMedium!.copyWith(
-      fontSize: 18.0,
-      color: colors.surface,
-    );
+    return textTheme.titleMedium?.copyWith(
+          fontSize: 18.0,
+          color: colors.surface,
+        ) ??
+        const TextStyle();
   }
 }

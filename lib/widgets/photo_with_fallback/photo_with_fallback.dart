@@ -222,18 +222,5 @@ class _PhotoWithFallbackState extends State<PhotoWithFallback>
     _imageStream!.addListener(_imageStreamListener!);
   }
 
-  // _shaderCallback() {
-  //   return (Rect bounds) {
-  //     return const RadialGradient(
-  //       center: Alignment.center,
-  //       radius: 0.5,
-  //       colors: [
-  //         Colors.black,
-  //         Colors.black,
-  //         Colors.transparent,
-  //       ],
-  //       stops: [0.0, 0.2, 1.0],
-  //     ).createShader(bounds);
-  //   };
-  // }
+
 }

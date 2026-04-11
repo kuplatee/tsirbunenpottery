@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/core/state/navigation/navigation_bloc.dart';
-import 'package:madmudmobile/core/state/navigation/navigation_event.dart';
 import 'package:madmudmobile/bootstrap/router/routes.dart';
 import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
 import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
@@ -14,39 +11,32 @@ class PieceCard extends StatelessWidget {
   final Piece piece;
   final Language language;
   final Size size;
-  final String fromRoute;
 
   const PieceCard({
     super.key,
     required this.design,
     required this.piece,
     required this.language,
-    required this.fromRoute,
     this.size = const Size(200.0, 150.0),
   });
 
   @override
   Widget build(BuildContext context) {
     final designName = design.names[language] ?? '';
-    final devSize = size;
-    // final devSize = Size(133.0, 100.0);
-    // final devSize = Size(100.0, 75.0);
 
     return GestureDetector(
-      onTap: () => _navigateTo(
-        context,
-      ),
+      onTap: () => _navigateTo(context),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PhotoWithFallback(
             photo: _photo(piece.imageFileNames),
-            size: devSize,
+            size: size,
             zoomOnHover: true,
           ),
           const SizedBox(height: 2.0),
           SizedBox(
-            width: devSize.width,
+            width: size.width,
             child: Text(designName,
                 style: _titleStyle(context),
                 maxLines: 2,
@@ -59,9 +49,7 @@ class PieceCard extends StatelessWidget {
   }
 
   void _navigateTo(BuildContext context) {
-    final navigationBloc = context.read<NavigationBloc>();
-    navigationBloc.add(PushToHistory(route: fromRoute));
-    PieceRoute(id: piece.id).go(context);
+    PieceRoute(id: piece.id).push(context);
   }
 
   Photo _photo(List<String> imageFileNames) {
@@ -71,8 +59,9 @@ class PieceCard extends StatelessWidget {
 
   TextStyle _titleStyle(BuildContext context) {
     return Theme.of(context)
-        .textTheme
-        .labelMedium!
-        .copyWith(overflow: TextOverflow.ellipsis);
+            .textTheme
+            .labelMedium
+            ?.copyWith(overflow: TextOverflow.ellipsis) ??
+        const TextStyle(overflow: TextOverflow.ellipsis);
   }
 }

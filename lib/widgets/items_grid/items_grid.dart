@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/core/state/navigation/navigation_bloc.dart';
-import 'package:madmudmobile/core/state/navigation/navigation_event.dart';
 import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
 import 'package:madmudmobile/widgets/items_grid/piece_card.dart';
 import 'package:madmudmobile/widgets/action_button/action_button.dart';
@@ -26,14 +23,11 @@ class ItemsGrid extends StatefulWidget {
   final String title;
   final String id;
   final List<Design> designs;
-  // final Map<String, Piece> piecesById;
   final List<Piece> pieces;
   final Language language;
   final Map<String, List<String>> imageFileNamesByDesignId;
   final GridParams gridParams;
   final ViewMode mode;
-  final String routeRoot;
-  final bool isListWithSubRoutes;
   final bool isTheOnlySubView;
   final void Function(BuildContext, String id)? onNavigate;
 
@@ -47,8 +41,6 @@ class ItemsGrid extends StatefulWidget {
     required this.imageFileNamesByDesignId,
     required this.gridParams,
     required this.mode,
-    required this.routeRoot,
-    required this.isListWithSubRoutes,
     required this.isTheOnlySubView,
     this.onNavigate,
   });
@@ -71,7 +63,6 @@ class _ItemsGridState extends State<ItemsGrid>
   Widget build(BuildContext context) {
     final isNarrow = widget.gridParams.availableWidth < showExpandBreakpoint;
     final size = _photoSize(isNarrow);
-    final fromRoute = _fromRoute();
     final horizontalAlignment =
         isNarrow ? CrossAxisAlignment.center : CrossAxisAlignment.start;
     final designsById = {for (final d in widget.designs) d.id: d};
@@ -80,7 +71,7 @@ class _ItemsGridState extends State<ItemsGrid>
       crossAxisAlignment: horizontalAlignment,
       children: [
         Container(
-          margin: const EdgeInsets.only(right: 0.0, top: 30.0),
+          margin: const EdgeInsets.only(top: 30.0),
           // FIXME: This component works in development and production, but fails in tests
           // due to horizontal overflow. Figure out the problem.
           child: Row(
@@ -108,7 +99,7 @@ class _ItemsGridState extends State<ItemsGrid>
         const SizedBox(height: 10.0),
         Container(
           margin: const EdgeInsets.only(
-              left: horizontalGridSpacing, right: 0.0, bottom: 20.0),
+              left: horizontalGridSpacing, bottom: 20.0),
           child: expandAll || widget.isTheOnlySubView
               ? Wrap(
                   spacing: horizontalGridSpacing,
@@ -122,7 +113,6 @@ class _ItemsGridState extends State<ItemsGrid>
                         design: design,
                         language: widget.language,
                         size: size,
-                        fromRoute: fromRoute,
                       ),
                     ];
                   }).toList(),
@@ -143,7 +133,6 @@ class _ItemsGridState extends State<ItemsGrid>
                             design: design,
                             language: widget.language,
                             size: size,
-                            fromRoute: fromRoute,
                           ),
                         ),
                       ];
@@ -156,9 +145,6 @@ class _ItemsGridState extends State<ItemsGrid>
   }
 
   void _navigateTo(BuildContext context) {
-    final navigationBloc = context.read<NavigationBloc>();
-    // FIXME: Should we also reset possible current history?
-    navigationBloc.add(PushToHistory(route: _fromRoute()));
     widget.onNavigate?.call(context, widget.id);
   }
 
@@ -182,12 +168,5 @@ class _ItemsGridState extends State<ItemsGrid>
     setState(() {
       expandAll = !expandAll;
     });
-  }
-
-  String _fromRoute() {
-    if (!widget.isListWithSubRoutes || !widget.isTheOnlySubView) {
-      return widget.routeRoot;
-    }
-    return '${widget.routeRoot}/${widget.id}';
   }
 }

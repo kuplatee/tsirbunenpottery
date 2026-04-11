@@ -38,7 +38,7 @@ class AppBarRightActions extends StatelessWidget {
     );
   }
 
-  _onChangeLanguage(BuildContext context, Language language) {
+  void _onChangeLanguage(BuildContext context, Language language) {
     context.read<LanguageBloc>().add(ChangeLanguage(language));
   }
 }
