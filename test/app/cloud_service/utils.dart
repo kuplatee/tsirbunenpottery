@@ -1,13 +1,13 @@
 import 'dart:convert';
-import 'package:madmudmobile/features/products/domain/models/collection/collection.dart';
+import 'package:madmudmobile/features/categories/domain/models/category/category.dart';
+import 'package:madmudmobile/features/collections/domain/models/collection/collection.dart';
+import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
 import 'package:madmudmobile/localization/languages.dart';
 import 'package:mockito/mockito.dart';
-import 'package:madmudmobile/features/products/domain/models/category/category.dart';
 import 'cloud_service_mocks.mocks.dart';
 import 'test_data.dart';
-import 'package:madmudmobile/features/products/domain/models/design/design.dart';
 
-prepareMocks(
+void prepareMocks(
     String collectionName,
     MockFirebaseFirestore mockFirestore,
     MockCollectionReference mockCollectionReference,
@@ -145,7 +145,6 @@ List<MockQueryDocumentSnapshot> createMockPieceDocs() {
 
     when(mockDoc.id).thenReturn(docData['id'] as String);
     when(mockDoc.data()).thenAnswer((_) => {
-          // 'serialNumber': docData['serialNumber'],
           'designId': mockDesignRef,
           'collectionId': mockCollectionRef,
           'imageFileNames':

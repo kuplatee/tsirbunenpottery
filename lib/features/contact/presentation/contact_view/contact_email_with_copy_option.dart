@@ -46,7 +46,13 @@ class ContactEmailWithCopyOption extends StatelessWidget {
                 weight: iconWeight,
               ),
               const SizedBox(width: 5.0),
-              Text(contactEmail, style: _emailTextStyle(colors)),
+              Flexible(
+                child: Text(
+                  contactEmail,
+                  style: _emailTextStyle(colors),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ],
           ),
         ),

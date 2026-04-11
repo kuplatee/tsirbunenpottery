@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:madmudmobile/bootstrap/tsirbunen_pottery_app/tsirbunen_pottery_app.dart';
+import 'package:madmudmobile/bootstrap/app/app.dart';
 import '../utils/prepare_blocs_for_tests.dart';
 
 void main() {
@@ -7,9 +7,9 @@ void main() {
     group('APP -', () {
       setUpAndTearDownAllBlocsAndPreventNetworkImages();
       testWidgets('app launches successfully', (WidgetTester tester) async {
-        await tester.pumpWidget(const TsirbunenPotteryApp());
+        await tester.pumpWidget(const App());
 
-        expect(find.byType(TsirbunenPotteryApp), findsOneWidget);
+        expect(find.byType(App), findsOneWidget);
       });
     });
   });

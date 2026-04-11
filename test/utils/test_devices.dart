@@ -3,6 +3,8 @@ import 'package:madmudmobile/widgets/horizontal_navigation/horizontal_navigation
 
 const testDevices = <String, Size>{
   'MOBILE': Size(375, 600),
-  // FIXME: There is something wrong here. The extra 300 should not be needed.
-  'DESKTOP': Size(minWidthForShowNavBarRoutes + 300, 1200),
+  // NOTE: Test font metrics (TextPainter) return wider characters than production
+  // fonts, so canFit in HorizontalNavigation needs extra room. 900 accommodates
+  // all 6 current routes. Revisit if routes are added or the estimate logic changes.
+  'DESKTOP': Size(minWidthForShowNavBarRoutes + 900, 1200),
 };

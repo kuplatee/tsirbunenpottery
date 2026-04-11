@@ -1,184 +1,100 @@
-import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:madmudmobile/features/products/domain/models/collection/collection.dart';
-import 'package:madmudmobile/features/products/domain/models/piece/piece.dart';
-import 'package:madmudmobile/features/products/domain/models/products/products.dart';
-import 'package:madmudmobile/features/products/repository/cloud_service.dart';
-import 'package:madmudmobile/localization/languages.dart';
-import 'package:madmudmobile/features/products/domain/models/category/category.dart';
+import 'package:madmudmobile/data/firestore_cloud_service.dart';
+import 'package:mockito/mockito.dart';
 import 'cloud_service_mocks.mocks.dart';
-import 'test_data.dart';
-import 'utils.dart';
-
-final collectionModels = collectionsToModels();
-final categoryModels = categoriesToModels();
-final designModels = designsToModels();
 
 void main() {
-  group('CloudService', () {
+  group('FirestoreCloudService', () {
     late MockFirebaseFirestore mockFirestore;
     late MockCollectionReference mockCollectionReference;
     late MockQuerySnapshot mockQuerySnapshot;
-    late CloudService cloudService;
+    late FirestoreCloudService cloudService;
 
     setUp(() {
       mockFirestore = MockFirebaseFirestore();
       mockCollectionReference = MockCollectionReference();
       mockQuerySnapshot = MockQuerySnapshot();
-      cloudService = CloudService(firestore: mockFirestore);
+      cloudService = FirestoreCloudService(firestore: mockFirestore);
     });
 
-    test('fetchItemsFromCloud should fetch categories', () async {
-      prepareMocks('categories', mockFirestore, mockCollectionReference,
-          mockQuerySnapshot, createMockCategoryDocs);
-      final categories = await cloudService.fetchItemsFromCloud<Category>(
-        path: 'categories',
-        fromDocument: cloudService.toCategory,
-      );
+    group('fetchMany -', () {
+      test('returns all documents as maps with id prepended', () async {
+        final doc1 = MockQueryDocumentSnapshot();
+        when(doc1.id).thenReturn('doc-1');
+        when(doc1.data()).thenReturn({'name': 'Alpha'});
 
-      expect(categories.length, mockCategoryDocsData.length);
+        final doc2 = MockQueryDocumentSnapshot();
+        when(doc2.id).thenReturn('doc-2');
+        when(doc2.data()).thenReturn({'name': 'Beta'});
 
-      for (int i = 0; i < categories.length; i++) {
-        final expected = mockCategoryDocsData[i];
-        final actual = categories[i];
+        when(mockFirestore.collection('items'))
+            .thenReturn(mockCollectionReference);
+        when(mockCollectionReference.get())
+            .thenAnswer((_) async => mockQuerySnapshot);
+        when(mockQuerySnapshot.docs).thenReturn([doc1, doc2]);
 
-        expect(actual.id, expected['id']);
+        final result = await cloudService.fetchMany(collection: 'items');
 
-        final expectedNames = expected['names'] as Map<String, dynamic>;
-        for (final langEntry in expectedNames.entries) {
-          expect(
-            actual.names.entries.any((e) =>
-                e.key.name == langEntry.key && e.value == langEntry.value),
-            isTrue,
-          );
-        }
-      }
+        expect(result.length, 2);
+        expect(result[0], {'id': 'doc-1', 'name': 'Alpha'});
+        expect(result[1], {'id': 'doc-2', 'name': 'Beta'});
+      });
+
+      test('returns empty list when collection has no documents', () async {
+        when(mockFirestore.collection('items'))
+            .thenReturn(mockCollectionReference);
+        when(mockCollectionReference.get())
+            .thenAnswer((_) async => mockQuerySnapshot);
+        when(mockQuerySnapshot.docs).thenReturn([]);
+
+        final result = await cloudService.fetchMany(collection: 'items');
+
+        expect(result, isEmpty);
+      });
     });
 
-    test('fetchItemsFromCloud should fetch collections', () async {
-      prepareMocks('collections', mockFirestore, mockCollectionReference,
-          mockQuerySnapshot, createMockCollectionDocs);
-      final collections = await cloudService.fetchItemsFromCloud<Collection>(
-        path: 'collections',
-        fromDocument: cloudService.toCollection,
-      );
+    group('fetchOne -', () {
+      test('returns matching document as a map with id prepended', () async {
+        final doc1 = MockQueryDocumentSnapshot();
+        when(doc1.id).thenReturn('doc-1');
+        when(doc1.data()).thenReturn({'name': 'Alpha'});
 
-      expect(collections.length, mockCollectionDocsData.length);
+        final doc2 = MockQueryDocumentSnapshot();
+        when(doc2.id).thenReturn('doc-2');
+        when(doc2.data()).thenReturn({'name': 'Beta'});
 
-      for (int i = 0; i < collections.length; i++) {
-        final expected = mockCollectionDocsData[i];
-        final actual = collections[i];
+        when(mockFirestore.collection('items'))
+            .thenReturn(mockCollectionReference);
+        when(mockCollectionReference.get())
+            .thenAnswer((_) async => mockQuerySnapshot);
+        when(mockQuerySnapshot.docs).thenReturn([doc1, doc2]);
 
-        expect(actual.id, expected['id']);
+        final result = await cloudService.fetchOne(
+          collection: 'items',
+          documentId: 'doc-2',
+        );
 
-        final expectedNames = expected['names'] as Map<String, dynamic>;
-        for (final langEntry in expectedNames.entries) {
-          expect(
-              actual.names.entries.any((e) =>
-                  e.key.name == langEntry.key && e.value == langEntry.value),
-              isTrue);
-        }
-      }
-    });
+        expect(result, {'id': 'doc-2', 'name': 'Beta'});
+      });
 
-    test('fetchItemsFromCloud should fetch designs', () async {
-      prepareMocks('designs', mockFirestore, mockCollectionReference,
-          mockQuerySnapshot, createMockDesignDocs);
+      test('returns null when document id is not found', () async {
+        final doc1 = MockQueryDocumentSnapshot();
+        when(doc1.id).thenReturn('doc-1');
+        when(doc1.data()).thenReturn({'name': 'Alpha'});
 
-      final designs = await cloudService.fetchItemsFromCloud(
-        path: 'designs',
-        fromDocument: (doc) => cloudService.toDesign(doc, categoryModels),
-      );
+        when(mockFirestore.collection('items'))
+            .thenReturn(mockCollectionReference);
+        when(mockCollectionReference.get())
+            .thenAnswer((_) async => mockQuerySnapshot);
+        when(mockQuerySnapshot.docs).thenReturn([doc1]);
 
-      expect(designs.length, mockDesignDocsData.length);
+        final result = await cloudService.fetchOne(
+          collection: 'items',
+          documentId: 'non-existent',
+        );
 
-      for (int i = 0; i < designs.length; i++) {
-        final expected = mockDesignDocsData[i];
-        final actual = designs[i];
-
-        expect(actual.id, expected['id']);
-
-        final expectedNames = expected['names'] as Map<String, dynamic>;
-        for (final langEntry in expectedNames.entries) {
-          expect(
-            actual.names.entries.any((e) =>
-                e.key.name == langEntry.key && e.value == langEntry.value),
-            isTrue,
-          );
-        }
-
-        final expectedDescriptions =
-            expected['description'] as Map<String, dynamic>;
-        for (final langEntry in expectedDescriptions.entries) {
-          expect(
-            actual.description.entries.any((e) =>
-                e.key.name == langEntry.key && e.value == langEntry.value),
-            isTrue,
-          );
-        }
-
-        final expectedCategoryIds = expected['categoryIds'] as List<dynamic>;
-        expect(actual.categoryIds, containsAll(expectedCategoryIds));
-
-        final expectedDetailsRaw = expected['details'] as Map<String, dynamic>;
-        for (final langEntry in expectedDetailsRaw.entries) {
-          // Decode the JSON string into a Map
-          final expectedDetailMap = Map<String, String>.from(
-            jsonDecode(langEntry.value as String) as Map<String, dynamic>,
-          );
-
-          final actualDetails = actual.details[
-              Language.values.firstWhere((e) => e.name == langEntry.key)];
-
-          expect(
-            actualDetails?.keys,
-            containsAll(expectedDetailMap.keys),
-          );
-        }
-      }
-    });
-
-    test('fetchItemsFromCloud should fetch pieces', () async {
-      prepareMocks('pieces', mockFirestore, mockCollectionReference,
-          mockQuerySnapshot, createMockPieceDocs);
-
-      final pieces = await cloudService.fetchItemsFromCloud<Piece?>(
-        path: 'pieces',
-        fromDocument: (doc) => cloudService.toPiece(
-          doc,
-          designModels,
-          collectionModels,
-        ),
-      );
-
-      expect(pieces.length, mockPieceDocsData.length);
-
-      for (int i = 0; i < pieces.length; i++) {
-        final expected = mockPieceDocsData[i];
-        final actual = pieces[i];
-
-        expect(actual!.id, expected['id']);
-        // expect(actual.serialNumber, expected['serialNumber']);
-        expect(actual.designId, expected['designId']);
-        expect(actual.collectionId, expected['collectionId']);
-        expect(actual.imageFileNames, expected['imageFileNames']);
-      }
-    });
-
-    test('fetchAllProductDataFromCloud should fetch complete product data',
-        () async {
-      setupAllProductsData(
-        mockFirestore: mockFirestore,
-        mockCollectionReference: mockCollectionReference,
-      );
-
-      final Products products =
-          await cloudService.fetchAllProductDataFromCloud();
-
-      expect(products.collections.length, mockCollectionDocsData.length);
-      expect(products.categories.length, mockCategoryDocsData.length);
-      expect(products.designs.length, mockDesignDocsData.length);
-      expect(products.pieces.length, mockPieceDocsData.length);
+        expect(result, isNull);
+      });
     });
   });
 }
