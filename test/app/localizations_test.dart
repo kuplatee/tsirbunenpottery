@@ -20,7 +20,7 @@ class MockTranslations implements Translations {
 }
 
 void main() {
-  group('LOCALIZATIONS >', () {
+  group('Localizations >', () {
     setUpAndTearDownAllBlocsAndPreventNetworkImages();
     test('does not throw when all keys match', () {
       final en = En();

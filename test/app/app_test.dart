@@ -3,8 +3,8 @@ import 'package:madmudmobile/bootstrap/app/app.dart';
 import '../utils/prepare_blocs_for_tests.dart';
 
 void main() {
-  group('TSIRBUNEN POTTERY APP >', () {
-    group('APP -', () {
+  group('Tsirbunen Pottery App > ', () {
+
       setUpAndTearDownAllBlocsAndPreventNetworkImages();
       testWidgets('app launches successfully', (WidgetTester tester) async {
         await tester.pumpWidget(const App());
@@ -12,5 +12,5 @@ void main() {
         expect(find.byType(App), findsOneWidget);
       });
     });
-  });
+  
 }

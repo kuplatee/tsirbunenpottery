@@ -5,14 +5,14 @@ import '../utils/barrel.dart';
 import 'routing_utils.dart';
 
 void main() {
-  group('ROUTING >', () {
+  group('Routing >', () {
     setUpAndTearDownAllBlocsAndPreventNetworkImages();
-    group('DRAWER -', () {
+    group('Drawer -', () {
       testDevices.forEach((String description, Size size) {
         testWidgets('drawer can be opened in $description',
             (WidgetTester tester) async {
           setViewSizeAndAddTeardown(tester, size);
-          await pumpMadMudApp(tester);
+          await pumpApp(tester);
 
           expect(find.byType(Drawer), findsNothing);
           await openDrawer(tester);
@@ -22,7 +22,7 @@ void main() {
         testWidgets('routes can be navigated to and from in $description',
             (WidgetTester tester) async {
           setViewSizeAndAddTeardown(tester, size);
-          await pumpMadMudApp(tester);
+          await pumpApp(tester);
 
           for (int i = 0; i < routeOrder.length - 1; i++) {
             final routeTo = routeOrder[i + 1];
@@ -35,13 +35,13 @@ void main() {
       });
     });
 
-    group('NAV BAR -', () {
+    group('Nav Bar -', () {
       testDevices.forEach((String description, Size size) {
         testWidgets(
             'horizontal navigation is${description == 'DESKTOP' ? "" : " not"} visible in $description',
             (WidgetTester tester) async {
           setViewSizeAndAddTeardown(tester, size);
-          await pumpMadMudApp(tester);
+          await pumpApp(tester);
 
           if (description == 'DESKTOP') {
             expect(find.byType(HorizontalNavigation), findsOneWidget);
@@ -54,7 +54,7 @@ void main() {
       testWidgets('routes can be navigated to and from in DESKTOP',
           (WidgetTester tester) async {
         setViewSizeAndAddTeardown(tester, testDevices['DESKTOP']!);
-        await pumpMadMudApp(tester);
+        await pumpApp(tester);
 
         for (int i = 0; i < routeOrder.length - 1; i++) {
           final routeTo = routeOrder[i + 1];
