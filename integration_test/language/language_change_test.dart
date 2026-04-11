@@ -1,24 +1,30 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:madmudmobile/app/blocs/blocs.dart';
-import 'package:madmudmobile/app/general_state_bloc/general_state_bloc.dart';
-import 'package:madmudmobile/bootstrap/tsirbunen_pottery_app/tsirbunen_pottery_app.dart';
+import 'package:madmudmobile/bootstrap/app/app.dart';
+import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
+import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
 import 'package:madmudmobile/localization/languages.dart';
+import '../utils/integration_test_utils.dart';
 import 'language_utils.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  prepareBlocs();
 
   group('LANGUAGE -', () {
-    testWidgets('can be changed', (
-      tester,
-    ) async {
-      await tester.pumpWidget(const TsirbunenPotteryApp());
+    setUpAll(() {
+      prepareBlocsForIntegrationTests();
+    });
+
+    tearDownAll(() {
+      getIt.reset();
+    });
+
+    testWidgets('can be changed', (tester) async {
+      await tester.pumpWidget(const App());
       await tester.pumpAndSettle();
 
       await changeLanguage(tester);
-      final bloc = getIt<GeneralStateBloc>();
+      final bloc = getIt<LanguageBloc>();
       expect(bloc.state.language, Language.fi);
       verifyVisibleAppLanguage(tester, Language.fi);
 

@@ -11,14 +11,14 @@ const testKey = Translation.collections;
 final testStringInEnglish = En().translate(testKey);
 final testStringInFinnish = Fi().translate(testKey);
 
-verifyVisibleAppLanguage(WidgetTester tester, Language language) {
+void verifyVisibleAppLanguage(WidgetTester tester, Language language) {
   final textToFind =
       language == Language.en ? testStringInEnglish : testStringInFinnish;
   final textFinder = find.text(textToFind);
   expect(textFinder, findsOneWidget);
 }
 
-changeLanguage(WidgetTester tester) async {
+Future<void> changeLanguage(WidgetTester tester) async {
   final toggleLanguageButton = find.descendant(
     of: find.byType(AppBarRightActions),
     matching: find.byWidgetPredicate(
