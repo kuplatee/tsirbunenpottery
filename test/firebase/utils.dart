@@ -4,8 +4,8 @@ import 'package:madmudmobile/features/collections/domain/models/collection/colle
 import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
 import 'package:madmudmobile/localization/languages.dart';
 import 'package:mockito/mockito.dart';
-import 'cloud_service_mocks.mocks.dart';
-import 'test_data.dart';
+import 'firebase_related_mocks.mocks.dart';
+import '../utils/test_data.dart';
 
 void prepareMocks(
     String collectionName,

@@ -21,9 +21,14 @@ To build the generated parts of immutable Freezed model classes, the go router r
 
 To run unit and widget tests
 
-`flutter test test/all_tests.dart -r expanded`
+`flutter test -r expanded`
+or
+`flutter test -r compact`
+or
+`flutter test -r expanded | sed 's#.*test/##'`
+or `flutter test -r expanded | sed 's#.*/##'`
 
-where the "-r expanded" results in a more verbose output. Note: the usual commands `flutter test` and `flutter test -r expanded` kind of work but they never result in all the tests running. Thats what the all_tests.dart is for.
+where the "-r expanded" results in a more verbose output and "-r compact" in a minimal output. 
 
 #### Integration tests
 

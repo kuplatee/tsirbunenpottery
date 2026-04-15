@@ -2,12 +2,11 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../routing/routing_utils.dart';
 import '../../utils/barrel.dart';
-import '../../utils/prepare_data_blocs_for_tests.dart';
 
 void main() {
   group('Feature Categories >', () {
     group('CategoriesView -', () {
-      setUpAndTearDownDataBlocsForTests();
+      setUpAndTearDownAllBlocsAndPreventNetworkImages();
 
       testWidgets(
           'shows names for all categories that have at least one piece',

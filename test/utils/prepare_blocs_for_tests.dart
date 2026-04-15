@@ -4,7 +4,6 @@ import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
 import 'package:madmudmobile/core/scroll_position_cache/scroll_position_cache.dart';
 import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
 import 'package:madmudmobile/core/state/language_bloc/language_event.dart';
-import 'package:madmudmobile/data/cloud_service.dart';
 import 'package:madmudmobile/localization/languages.dart';
 import 'package:madmudmobile/data/products_repository.dart';
 import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dart';
@@ -23,25 +22,11 @@ import 'package:madmudmobile/features/pieces/domain/bloc/pieces_bloc.dart';
 import 'package:madmudmobile/features/pieces/domain/bloc/pieces_event.dart';
 import 'package:madmudmobile/features/pieces/repository/pieces_repository.dart';
 
-/// Returns empty data so blocs reach a valid empty state without network calls.
-class _StubCloudService implements CloudService {
-  @override
-  Future<Map<String, dynamic>?> fetchOne({
-    required String collection,
-    required String documentId,
-  }) async =>
-      null;
-
-  @override
-  Future<List<Map<String, dynamic>>> fetchMany({
-    required String collection,
-  }) async =>
-      [];
-}
+import 'mock_cloud_service_helpers.dart';
 
 void prepareBlocsForTests() {
   if (!getIt.isRegistered<LanguageBloc>()) {
-    final cloudService = _StubCloudService();
+    final cloudService = mockCloudServiceWithData();
 
     final homeRepository = HomeRepository(cloudService);
     final homeBloc = HomeBloc(homeRepository);

@@ -41,7 +41,6 @@ class AppBarCustomized extends StatelessWidget implements PreferredSizeWidget {
   BoxDecoration _decoration(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return BoxDecoration(
-      // color: colors.onTertiary, // Is it better with the background color or without?
       border: Border(bottom: BorderSide(width: 1.0, color: colors.onTertiary)),
     );
   }

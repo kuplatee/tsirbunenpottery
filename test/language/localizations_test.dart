@@ -3,7 +3,7 @@ import 'package:madmudmobile/localization/en.dart';
 import 'package:madmudmobile/localization/translation.dart';
 import 'package:madmudmobile/localization/translations.dart';
 import 'package:madmudmobile/localization/validate_translations.dart';
-import '../utils/prepare_blocs_for_tests.dart';
+import '../utils/barrel.dart';
 
 class MockTranslations implements Translations {
   final Map<String, String> _all;

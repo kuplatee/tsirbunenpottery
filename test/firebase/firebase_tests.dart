@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:madmudmobile/data/firestore_cloud_service.dart';
 import 'package:mockito/mockito.dart';
-import 'cloud_service_mocks.mocks.dart';
+import 'firebase_related_mocks.mocks.dart';
 
 void main() {
-  group('FirestoreCloudService', () {
+  group('Firestore > ', () {
     late MockFirebaseFirestore mockFirestore;
     late MockCollectionReference mockCollectionReference;
     late MockQuerySnapshot mockQuerySnapshot;

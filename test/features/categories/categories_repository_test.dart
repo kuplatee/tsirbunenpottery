@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:madmudmobile/data/products_repository.dart';
 import 'package:madmudmobile/features/categories/repository/categories_repository.dart';
 
-import '../../utils/data_cloud_service.dart';
+import '../../utils/mock_cloud_service_helpers.dart';
 
 void main() {
   group('Feature Categories >', () {
@@ -11,7 +11,7 @@ void main() {
 
       setUp(() {
         repository =
-            CategoriesRepository(ProductsRepository(DataCloudService()));
+            CategoriesRepository(ProductsRepository(mockCloudServiceWithData()));
       });
 
       test('loads all 4 categories from the cloud', () async {

@@ -1,35 +1,19 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
-import 'package:madmudmobile/data/cloud_service.dart';
 import 'package:madmudmobile/data/products_repository.dart';
 import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dart';
 import 'package:madmudmobile/features/categories/domain/bloc/categories_event.dart';
 import 'package:madmudmobile/features/categories/domain/bloc/categories_state.dart';
 import 'package:madmudmobile/features/categories/repository/categories_repository.dart';
 
-import '../../utils/data_cloud_service.dart';
-
-class _FailingCloudService implements CloudService {
-  @override
-  Future<Map<String, dynamic>?> fetchOne({
-    required String collection,
-    required String documentId,
-  }) async =>
-      null;
-
-  @override
-  Future<List<Map<String, dynamic>>> fetchMany({
-    required String collection,
-  }) async =>
-      throw Exception('Network failure');
-}
+import '../../utils/mock_cloud_service_helpers.dart';
 
 CategoriesBloc _makeBlocWithData() =>
-    CategoriesBloc(CategoriesRepository(ProductsRepository(DataCloudService())));
+    CategoriesBloc(CategoriesRepository(ProductsRepository(mockCloudServiceWithData())));
 
 CategoriesBloc _makeBlocFailing() => CategoriesBloc(
-    CategoriesRepository(ProductsRepository(_FailingCloudService())));
+    CategoriesRepository(ProductsRepository(mockCloudServiceFailing())));
 
 void main() {
   group('Feature Categories >', () {
