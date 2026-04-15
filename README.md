@@ -27,6 +27,7 @@ or
 or
 `flutter test -r expanded | sed 's#.*test/##'`
 or `flutter test -r expanded | sed 's#.*/##'`
+or `FORCE_COLOR=1 flutter test --color -r expanded | perl -pe 's{.+(_test\.dart: )(.+)}{\e[38;5;75m$2\e[0m}'`
 
 where the "-r expanded" results in a more verbose output and "-r compact" in a minimal output. 
 
