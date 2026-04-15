@@ -1,25 +1,25 @@
-import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
-import 'package:madmudmobile/core/scroll_position_cache/scroll_position_cache.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_event.dart';
-import 'package:madmudmobile/data/cloud_service.dart';
-import 'package:madmudmobile/data/products_repository.dart';
-import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dart';
-import 'package:madmudmobile/features/categories/domain/bloc/categories_event.dart';
-import 'package:madmudmobile/features/categories/repository/categories_repository.dart';
-import 'package:madmudmobile/features/collections/domain/bloc/collections_bloc.dart';
-import 'package:madmudmobile/features/collections/domain/bloc/collections_event.dart';
-import 'package:madmudmobile/features/collections/repository/collections_repository.dart';
-import 'package:madmudmobile/features/designs/domain/bloc/designs_bloc.dart';
-import 'package:madmudmobile/features/designs/domain/bloc/designs_event.dart';
-import 'package:madmudmobile/features/designs/repository/designs_repository.dart';
-import 'package:madmudmobile/features/home/domain/bloc/home_bloc.dart';
-import 'package:madmudmobile/features/home/domain/bloc/home_event.dart';
-import 'package:madmudmobile/features/home/repository/home_repository.dart';
-import 'package:madmudmobile/features/pieces/domain/bloc/pieces_bloc.dart';
-import 'package:madmudmobile/features/pieces/domain/bloc/pieces_event.dart';
-import 'package:madmudmobile/features/pieces/repository/pieces_repository.dart';
-import 'package:madmudmobile/localization/languages.dart';
+import 'package:tsirbunenpottery/bootstrap/service_locator/service_locator.dart';
+import 'package:tsirbunenpottery/core/scroll_position_cache/scroll_position_cache.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_bloc.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_event.dart';
+import 'package:tsirbunenpottery/data/cloud_service.dart';
+import 'package:tsirbunenpottery/data/products_repository.dart';
+import 'package:tsirbunenpottery/features/categories/domain/bloc/categories_bloc.dart';
+import 'package:tsirbunenpottery/features/categories/domain/bloc/categories_event.dart';
+import 'package:tsirbunenpottery/features/categories/repository/categories_repository.dart';
+import 'package:tsirbunenpottery/features/collections/domain/bloc/collections_bloc.dart';
+import 'package:tsirbunenpottery/features/collections/domain/bloc/collections_event.dart';
+import 'package:tsirbunenpottery/features/collections/repository/collections_repository.dart';
+import 'package:tsirbunenpottery/features/designs/domain/bloc/designs_bloc.dart';
+import 'package:tsirbunenpottery/features/designs/domain/bloc/designs_event.dart';
+import 'package:tsirbunenpottery/features/designs/repository/designs_repository.dart';
+import 'package:tsirbunenpottery/features/home/domain/bloc/home_bloc.dart';
+import 'package:tsirbunenpottery/features/home/domain/bloc/home_event.dart';
+import 'package:tsirbunenpottery/features/home/repository/home_repository.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/bloc/pieces_bloc.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/bloc/pieces_event.dart';
+import 'package:tsirbunenpottery/features/pieces/repository/pieces_repository.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
 
 /// Stub that returns empty data — no network calls, no Firebase needed.
 class _StubCloudService implements CloudService {

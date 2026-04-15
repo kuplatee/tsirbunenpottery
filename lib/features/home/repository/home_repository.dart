@@ -1,5 +1,5 @@
-import 'package:madmudmobile/data/cloud_service.dart';
-import 'package:madmudmobile/utils/constants.dart';
+import 'package:tsirbunenpottery/data/cloud_service.dart';
+import 'package:tsirbunenpottery/utils/constants.dart';
 
 class HomeRepository {
   final CloudService _cloudService;

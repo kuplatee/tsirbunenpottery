@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/features/pieces/presentation/single_piece_view/photo_carousel_indicator.dart';
-import 'package:madmudmobile/utils/constants.dart';
-import 'package:madmudmobile/widgets/photo_with_fallback/photo_with_fallback.dart';
+import 'package:tsirbunenpottery/features/pieces/presentation/single_piece_view/photo_carousel_indicator.dart';
+import 'package:tsirbunenpottery/utils/constants.dart';
+import 'package:tsirbunenpottery/widgets/photo_with_fallback/photo_with_fallback.dart';
 
 const double photoMinWidth = 300.0;
 const Size photoSize = Size(photoMinWidth, photoMinWidth);

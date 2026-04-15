@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:madmudmobile/widgets/hover_detector/hover_detector.dart';
+import 'package:tsirbunenpottery/widgets/hover_detector/hover_detector.dart';
 
 const iconSize = 30.0;
 const fontSize = 16.0;

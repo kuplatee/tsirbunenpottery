@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
-import 'package:madmudmobile/bootstrap/app/app.dart';
-import 'package:madmudmobile/theme/app_status_bar_color.dart';
+import 'package:tsirbunenpottery/bootstrap/service_locator/service_locator.dart';
+import 'package:tsirbunenpottery/bootstrap/app/app.dart';
+import 'package:tsirbunenpottery/theme/app_status_bar_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 

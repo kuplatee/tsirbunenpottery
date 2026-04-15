@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/localization/translation.dart';
+import 'package:tsirbunenpottery/localization/app_locale.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
 
 const double tradeNameFontSize = 15.0;
 const FontWeight tradeNameFontWeight = FontWeight.w900;

@@ -1,10 +1,10 @@
-import 'package:madmudmobile/data/cloud_service.dart';
-import 'package:madmudmobile/features/categories/domain/models/category/category.dart';
-import 'package:madmudmobile/features/collections/domain/models/collection/collection.dart';
-import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
+import 'package:tsirbunenpottery/data/cloud_service.dart';
+import 'package:tsirbunenpottery/features/categories/domain/models/category/category.dart';
+import 'package:tsirbunenpottery/features/collections/domain/models/collection/collection.dart';
+import 'package:tsirbunenpottery/features/designs/domain/models/design/design.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/models/piece/piece.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:madmudmobile/localization/languages.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
 import 'dart:convert';
 
 typedef AllProductsData = ({

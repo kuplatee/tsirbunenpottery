@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
-import 'package:madmudmobile/features/pieces/domain/bloc/pieces_bloc.dart';
-import 'package:madmudmobile/features/pieces/domain/bloc/pieces_state.dart';
-import 'package:madmudmobile/widgets/items_grid/models.dart';
-import 'package:madmudmobile/widgets/items_grid/items_grid.dart';
-import 'package:madmudmobile/widgets/items_grid/scroll_position_mixin.dart';
-import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/widgets/footer/footer.dart';
-import 'package:madmudmobile/widgets/bloc_status_view/bloc_status_view.dart';
-import 'package:madmudmobile/widgets/page_base/page_base.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_bloc.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_state.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/bloc/pieces_bloc.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/bloc/pieces_state.dart';
+import 'package:tsirbunenpottery/widgets/items_grid/models.dart';
+import 'package:tsirbunenpottery/widgets/items_grid/items_grid.dart';
+import 'package:tsirbunenpottery/widgets/items_grid/scroll_position_mixin.dart';
+import 'package:tsirbunenpottery/localization/app_locale.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/widgets/footer/footer.dart';
+import 'package:tsirbunenpottery/widgets/bloc_status_view/bloc_status_view.dart';
+import 'package:tsirbunenpottery/widgets/page_base/page_base.dart';
 
 class PiecesView extends StatefulWidget {
   const PiecesView({super.key});

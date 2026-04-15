@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/bootstrap/environment/app_environment.dart';
-import 'package:madmudmobile/widgets/photo_with_fallback/no_image_icon_placeholder.dart';
+import 'package:tsirbunenpottery/bootstrap/environment/app_environment.dart';
+import 'package:tsirbunenpottery/widgets/photo_with_fallback/no_image_icon_placeholder.dart';
 
 const Duration fadeInDuration = Duration(milliseconds: 1500);
 

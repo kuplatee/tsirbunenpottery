@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/widgets/app_bar/app_bar_customized.dart';
-import 'package:madmudmobile/widgets/drawer/drawer_for_app_bar.dart';
-import 'package:madmudmobile/widgets/progress_indicator/progress_indicator_page_overlay.dart';
+import 'package:tsirbunenpottery/widgets/app_bar/app_bar_customized.dart';
+import 'package:tsirbunenpottery/widgets/drawer/drawer_for_app_bar.dart';
+import 'package:tsirbunenpottery/widgets/progress_indicator/progress_indicator_page_overlay.dart';
 
 class PageBase extends StatelessWidget {
   final Widget pageBody;

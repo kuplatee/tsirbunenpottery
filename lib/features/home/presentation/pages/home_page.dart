@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
-import 'package:madmudmobile/features/home/domain/bloc/home_bloc.dart';
-import 'package:madmudmobile/features/home/domain/bloc/home_state.dart';
-import 'package:madmudmobile/features/home/presentation/pages/home_page_text_content.dart';
-import 'package:madmudmobile/utils/constants.dart';
-import 'package:madmudmobile/widgets/bloc_status_view/bloc_status_view.dart';
-import 'package:madmudmobile/widgets/page_base/page_base.dart';
-import 'package:madmudmobile/widgets/photo_with_fallback/photo_with_fallback.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_bloc.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_state.dart';
+import 'package:tsirbunenpottery/features/home/domain/bloc/home_bloc.dart';
+import 'package:tsirbunenpottery/features/home/domain/bloc/home_state.dart';
+import 'package:tsirbunenpottery/features/home/presentation/pages/home_page_text_content.dart';
+import 'package:tsirbunenpottery/utils/constants.dart';
+import 'package:tsirbunenpottery/widgets/bloc_status_view/bloc_status_view.dart';
+import 'package:tsirbunenpottery/widgets/page_base/page_base.dart';
+import 'package:tsirbunenpottery/widgets/photo_with_fallback/photo_with_fallback.dart';
 
 const Size photoSize = Size(275.0, 275.0);
 

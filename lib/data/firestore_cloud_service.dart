@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:madmudmobile/data/cloud_service.dart';
+import 'package:tsirbunenpottery/data/cloud_service.dart';
 
 class FirestoreCloudService implements CloudService {
   final FirebaseFirestore _firestore;

@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:madmudmobile/features/categories/domain/models/category/category.dart';
-import 'package:madmudmobile/features/collections/domain/models/collection/collection.dart';
-import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/localization/languages.dart';
+import 'package:tsirbunenpottery/features/categories/domain/models/category/category.dart';
+import 'package:tsirbunenpottery/features/collections/domain/models/collection/collection.dart';
+import 'package:tsirbunenpottery/features/designs/domain/models/design/design.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
 import 'package:mockito/mockito.dart';
 import 'firebase_related_mocks.mocks.dart';
 import '../utils/test_data.dart';

@@ -1,5 +1,5 @@
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/localization/translations.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/localization/translations.dart';
 
 // FIXME: Find a better way to check the translations, for example move on to some code generation
 void validateTranslations(Translations translations) {

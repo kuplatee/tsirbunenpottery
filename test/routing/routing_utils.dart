@@ -1,15 +1,15 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/widgets/drawer/drawer_route_item.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/widgets/drawer/drawer_route_item.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:madmudmobile/localization/en.dart';
-import 'package:madmudmobile/features/home/presentation/pages/home_page.dart';
-import 'package:madmudmobile/features/pieces/presentation/pages/pieces_page.dart';
-import 'package:madmudmobile/features/designs/presentation/pages/designs_page.dart';
-import 'package:madmudmobile/features/categories/presentation/pages/categories_page.dart';
-import 'package:madmudmobile/features/collections/presentation/pages/collections_page.dart';
-import 'package:madmudmobile/features/contact/presentation/pages/contact_page.dart';
-import 'package:madmudmobile/widgets/horizontal_navigation/horizontal_navigation.dart';
+import 'package:tsirbunenpottery/localization/en.dart';
+import 'package:tsirbunenpottery/features/home/presentation/pages/home_page.dart';
+import 'package:tsirbunenpottery/features/pieces/presentation/pages/pieces_page.dart';
+import 'package:tsirbunenpottery/features/designs/presentation/pages/designs_page.dart';
+import 'package:tsirbunenpottery/features/categories/presentation/pages/categories_page.dart';
+import 'package:tsirbunenpottery/features/collections/presentation/pages/collections_page.dart';
+import 'package:tsirbunenpottery/features/contact/presentation/pages/contact_page.dart';
+import 'package:tsirbunenpottery/widgets/horizontal_navigation/horizontal_navigation.dart';
 
 final english = En();
 

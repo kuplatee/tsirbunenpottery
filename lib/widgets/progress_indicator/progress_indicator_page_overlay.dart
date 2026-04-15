@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/widgets/progress_indicator/progress_indicator_xl.dart';
+import 'package:tsirbunenpottery/widgets/progress_indicator/progress_indicator_xl.dart';
 
 const opacity = 0.6;
 

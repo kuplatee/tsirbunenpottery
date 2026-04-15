@@ -1,6 +1,6 @@
-import 'package:madmudmobile/localization/languages.dart';
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/localization/translations.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/localization/translations.dart';
 
 class En implements Translations {
   @override

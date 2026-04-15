@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:madmudmobile/features/collections/presentation/pages/collections_page.dart';
-import 'package:madmudmobile/features/contact/presentation/pages/contact_page.dart';
-import 'package:madmudmobile/features/categories/presentation/pages/categories_page.dart';
-import 'package:madmudmobile/features/designs/presentation/pages/designs_page.dart';
-import 'package:madmudmobile/features/home/presentation/pages/home_page.dart';
-import 'package:madmudmobile/features/pieces/presentation/pages/single_piece_page.dart';
-import 'package:madmudmobile/features/pieces/presentation/pages/pieces_page.dart';
+import 'package:tsirbunenpottery/features/collections/presentation/pages/collections_page.dart';
+import 'package:tsirbunenpottery/features/contact/presentation/pages/contact_page.dart';
+import 'package:tsirbunenpottery/features/categories/presentation/pages/categories_page.dart';
+import 'package:tsirbunenpottery/features/designs/presentation/pages/designs_page.dart';
+import 'package:tsirbunenpottery/features/home/presentation/pages/home_page.dart';
+import 'package:tsirbunenpottery/features/pieces/presentation/pages/single_piece_page.dart';
+import 'package:tsirbunenpottery/features/pieces/presentation/pages/pieces_page.dart';
 
 // Note: We want to use type-safe routes, and for that, go_router supports using routes
 // generated with the go_router_builder package (that uses build_runner under the hood).

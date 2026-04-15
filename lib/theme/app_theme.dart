@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/theme/colors.dart';
+import 'package:tsirbunenpottery/theme/colors.dart';
 
 class AppTheme {
   const AppTheme();

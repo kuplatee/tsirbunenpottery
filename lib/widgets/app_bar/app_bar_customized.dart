@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/widgets/app_bar/app_bar_left_actions.dart';
-import 'package:madmudmobile/widgets/app_bar/app_bar_right_actions.dart';
-import 'package:madmudmobile/widgets/horizontal_navigation/horizontal_navigation.dart';
+import 'package:tsirbunenpottery/widgets/app_bar/app_bar_left_actions.dart';
+import 'package:tsirbunenpottery/widgets/app_bar/app_bar_right_actions.dart';
+import 'package:tsirbunenpottery/widgets/horizontal_navigation/horizontal_navigation.dart';
 
 // FIXME: As long as the app is only available as the web version, the app bar height
 // should be lowered like here.

@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
-import 'package:madmudmobile/features/categories/domain/bloc/categories_event.dart';
-import 'package:madmudmobile/features/categories/domain/bloc/categories_state.dart';
-import 'package:madmudmobile/features/categories/repository/categories_repository.dart';
+import 'package:tsirbunenpottery/core/types/bloc_status/bloc_status.dart';
+import 'package:tsirbunenpottery/features/categories/domain/bloc/categories_event.dart';
+import 'package:tsirbunenpottery/features/categories/domain/bloc/categories_state.dart';
+import 'package:tsirbunenpottery/features/categories/repository/categories_repository.dart';
 
 class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
   final CategoriesRepository _repository;

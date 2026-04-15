@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
-import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/widgets/progress_indicator/progress_indicator_xl.dart';
+import 'package:tsirbunenpottery/core/types/bloc_status/bloc_status.dart';
+import 'package:tsirbunenpottery/localization/app_locale.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/widgets/progress_indicator/progress_indicator_xl.dart';
 
 class BlocStatusView extends StatelessWidget {
   final BlocStatus status;

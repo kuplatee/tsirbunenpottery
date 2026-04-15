@@ -1,11 +1,11 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
-import 'package:madmudmobile/data/products_repository.dart';
-import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dart';
-import 'package:madmudmobile/features/categories/domain/bloc/categories_event.dart';
-import 'package:madmudmobile/features/categories/domain/bloc/categories_state.dart';
-import 'package:madmudmobile/features/categories/repository/categories_repository.dart';
+import 'package:tsirbunenpottery/core/types/bloc_status/bloc_status.dart';
+import 'package:tsirbunenpottery/data/products_repository.dart';
+import 'package:tsirbunenpottery/features/categories/domain/bloc/categories_bloc.dart';
+import 'package:tsirbunenpottery/features/categories/domain/bloc/categories_event.dart';
+import 'package:tsirbunenpottery/features/categories/domain/bloc/categories_state.dart';
+import 'package:tsirbunenpottery/features/categories/repository/categories_repository.dart';
 
 import '../../utils/mock_cloud_service_helpers.dart';
 

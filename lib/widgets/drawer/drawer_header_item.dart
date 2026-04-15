@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/widgets/company/company.dart';
-import 'package:madmudmobile/widgets/company/trademark.dart';
+import 'package:tsirbunenpottery/widgets/company/company.dart';
+import 'package:tsirbunenpottery/widgets/company/trademark.dart';
 
 const EdgeInsets padding =
     EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0);

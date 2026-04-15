@@ -1,15 +1,15 @@
-import 'package:madmudmobile/localization/app_locale.dart';
+import 'package:tsirbunenpottery/localization/app_locale.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
-import 'package:madmudmobile/features/pieces/domain/bloc/pieces_bloc.dart';
-import 'package:madmudmobile/features/pieces/domain/bloc/pieces_state.dart';
-import 'package:madmudmobile/features/pieces/presentation/single_piece_view/design_description.dart';
-import 'package:madmudmobile/features/pieces/presentation/single_piece_view/piece_photos.dart';
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/widgets/footer/footer.dart';
-import 'package:madmudmobile/widgets/page_base/page_base.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_bloc.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_state.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/bloc/pieces_bloc.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/bloc/pieces_state.dart';
+import 'package:tsirbunenpottery/features/pieces/presentation/single_piece_view/design_description.dart';
+import 'package:tsirbunenpottery/features/pieces/presentation/single_piece_view/piece_photos.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/widgets/footer/footer.dart';
+import 'package:tsirbunenpottery/widgets/page_base/page_base.dart';
 
 const double spacing = 20.0;
 const double limit = 600.0;

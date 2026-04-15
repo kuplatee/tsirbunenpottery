@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:madmudmobile/theme/colors.dart';
+import 'package:tsirbunenpottery/theme/colors.dart';
 
 void setAppStatusBarColor() {
   SystemChrome.setSystemUIOverlayStyle(

@@ -1,7 +1,7 @@
 # ARCHITECTURE.md
 
 ## Package name
-`madmudmobile` (Flutter package name; app display name is "Tsirbunen Pottery")
+`tsirbunenpottery` (Flutter package name; app display name is "Tsirbunen Pottery")
 
 ## Stack
 | Concern | Library |

@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
-import 'package:madmudmobile/features/categories/domain/models/category/category.dart';
-import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
+import 'package:tsirbunenpottery/core/types/bloc_status/bloc_status.dart';
+import 'package:tsirbunenpottery/features/categories/domain/models/category/category.dart';
+import 'package:tsirbunenpottery/features/designs/domain/models/design/design.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/models/piece/piece.dart';
 
 class CategoriesState extends Equatable {
   final BlocStatus blocStatus;

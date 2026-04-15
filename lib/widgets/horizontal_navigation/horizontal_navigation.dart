@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/bootstrap/router/route_enum.dart';
-import 'package:madmudmobile/utils/current_page_name_from_settings.dart';
-import 'package:madmudmobile/widgets/company/trademark.dart';
+import 'package:tsirbunenpottery/localization/app_locale.dart';
+import 'package:tsirbunenpottery/bootstrap/router/route_enum.dart';
+import 'package:tsirbunenpottery/utils/current_page_name_from_settings.dart';
+import 'package:tsirbunenpottery/widgets/company/trademark.dart';
 
 const EdgeInsets padding = EdgeInsets.symmetric(horizontal: 2.0);
 const double borderRadius = 5.0;

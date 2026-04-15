@@ -1,5 +1,5 @@
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/bootstrap/router/routes.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/bootstrap/router/routes.dart';
 
 enum RouteEnum {
   home,

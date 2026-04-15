@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/localization/fi.dart';
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/localization/translations.dart';
+import 'package:tsirbunenpottery/localization/fi.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/localization/translations.dart';
 import 'en.dart';
 
 class AppLocale {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:madmudmobile/widgets/horizontal_navigation/horizontal_navigation.dart';
+import 'package:tsirbunenpottery/widgets/horizontal_navigation/horizontal_navigation.dart';
 import '../utils/barrel.dart';
 import 'routing_utils.dart';
 

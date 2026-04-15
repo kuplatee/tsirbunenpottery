@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/bootstrap/service_locator/service_locator.dart';
-import 'package:madmudmobile/core/scroll_position_cache/scroll_position_cache.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
-import 'package:madmudmobile/features/home/domain/bloc/home_bloc.dart';
-import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dart';
-import 'package:madmudmobile/features/collections/domain/bloc/collections_bloc.dart';
-import 'package:madmudmobile/features/designs/domain/bloc/designs_bloc.dart';
-import 'package:madmudmobile/features/pieces/domain/bloc/pieces_bloc.dart';
-import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/localization/languages.dart';
-import 'package:madmudmobile/bootstrap/router/route_controller.dart';
-import 'package:madmudmobile/localization/utils.dart';
-import 'package:madmudmobile/theme/app_theme.dart';
+import 'package:tsirbunenpottery/bootstrap/service_locator/service_locator.dart';
+import 'package:tsirbunenpottery/core/scroll_position_cache/scroll_position_cache.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_bloc.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_state.dart';
+import 'package:tsirbunenpottery/features/home/domain/bloc/home_bloc.dart';
+import 'package:tsirbunenpottery/features/categories/domain/bloc/categories_bloc.dart';
+import 'package:tsirbunenpottery/features/collections/domain/bloc/collections_bloc.dart';
+import 'package:tsirbunenpottery/features/designs/domain/bloc/designs_bloc.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/bloc/pieces_bloc.dart';
+import 'package:tsirbunenpottery/localization/app_locale.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
+import 'package:tsirbunenpottery/bootstrap/router/route_controller.dart';
+import 'package:tsirbunenpottery/localization/utils.dart';
+import 'package:tsirbunenpottery/theme/app_theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

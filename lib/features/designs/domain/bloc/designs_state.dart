@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
-import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
+import 'package:tsirbunenpottery/core/types/bloc_status/bloc_status.dart';
+import 'package:tsirbunenpottery/features/designs/domain/models/design/design.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/models/piece/piece.dart';
 
 class DesignsState extends Equatable {
   final BlocStatus blocStatus;

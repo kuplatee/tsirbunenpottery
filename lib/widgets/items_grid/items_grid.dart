@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
-import 'package:madmudmobile/widgets/items_grid/piece_card.dart';
-import 'package:madmudmobile/widgets/action_button/action_button.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/models/piece/piece.dart';
+import 'package:tsirbunenpottery/widgets/items_grid/piece_card.dart';
+import 'package:tsirbunenpottery/widgets/action_button/action_button.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/widgets/items_grid/models.dart';
-import 'package:madmudmobile/widgets/items_grid/scroll_position_mixin.dart';
-import 'package:madmudmobile/widgets/items_grid/title_with_hover_effect.dart';
-import 'package:madmudmobile/localization/languages.dart';
+import 'package:tsirbunenpottery/features/designs/domain/models/design/design.dart';
+import 'package:tsirbunenpottery/widgets/items_grid/models.dart';
+import 'package:tsirbunenpottery/widgets/items_grid/scroll_position_mixin.dart';
+import 'package:tsirbunenpottery/widgets/items_grid/title_with_hover_effect.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
 
 // Note: Let's subtract some space from the photo width (if single row) as a guide to
 // the user to scroll horizontally to see more designs

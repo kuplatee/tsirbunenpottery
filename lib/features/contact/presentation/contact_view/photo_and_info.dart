@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/features/contact/presentation/contact_view/contact_email_with_copy_option.dart';
-import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/utils/constants.dart';
-import 'package:madmudmobile/widgets/company/company.dart';
-import 'package:madmudmobile/widgets/photo_with_fallback/photo_with_fallback.dart';
+import 'package:tsirbunenpottery/features/contact/presentation/contact_view/contact_email_with_copy_option.dart';
+import 'package:tsirbunenpottery/localization/app_locale.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/utils/constants.dart';
+import 'package:tsirbunenpottery/widgets/company/company.dart';
+import 'package:tsirbunenpottery/widgets/photo_with_fallback/photo_with_fallback.dart';
 
 const Size photoSize = Size(275.0, 275.0);
 

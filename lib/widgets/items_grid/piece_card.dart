@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/bootstrap/router/routes.dart';
-import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
-import 'package:madmudmobile/localization/languages.dart';
-import 'package:madmudmobile/utils/constants.dart';
-import 'package:madmudmobile/widgets/photo_with_fallback/photo_with_fallback.dart';
+import 'package:tsirbunenpottery/bootstrap/router/routes.dart';
+import 'package:tsirbunenpottery/features/designs/domain/models/design/design.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/models/piece/piece.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
+import 'package:tsirbunenpottery/utils/constants.dart';
+import 'package:tsirbunenpottery/widgets/photo_with_fallback/photo_with_fallback.dart';
 
 class PieceCard extends StatelessWidget {
   final Design design;

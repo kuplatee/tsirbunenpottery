@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/localization/languages.dart';
-import 'package:madmudmobile/localization/translation.dart';
+import 'package:tsirbunenpottery/features/designs/domain/models/design/design.dart';
+import 'package:tsirbunenpottery/localization/app_locale.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
 
 class DesignDescription extends StatelessWidget {
   final Design design;

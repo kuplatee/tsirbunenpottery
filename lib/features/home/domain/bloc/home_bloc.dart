@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
-import 'package:madmudmobile/features/home/domain/bloc/home_event.dart';
-import 'package:madmudmobile/features/home/domain/bloc/home_state.dart';
-import 'package:madmudmobile/features/home/repository/home_repository.dart';
+import 'package:tsirbunenpottery/core/types/bloc_status/bloc_status.dart';
+import 'package:tsirbunenpottery/features/home/domain/bloc/home_event.dart';
+import 'package:tsirbunenpottery/features/home/domain/bloc/home_state.dart';
+import 'package:tsirbunenpottery/features/home/repository/home_repository.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository _repository;

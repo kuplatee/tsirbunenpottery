@@ -1,4 +1,4 @@
-import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
+import 'package:tsirbunenpottery/core/types/bloc_status/bloc_status.dart';
 
 class CategoriesEvent {}
 

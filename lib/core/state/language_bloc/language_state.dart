@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:madmudmobile/localization/languages.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
 
 class LanguageState extends Equatable {
   final Language language;

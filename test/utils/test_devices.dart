@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/widgets/horizontal_navigation/horizontal_navigation.dart';
+import 'package:tsirbunenpottery/widgets/horizontal_navigation/horizontal_navigation.dart';
 
 const testDevices = <String, Size>{
   'MOBILE': Size(375, 600),

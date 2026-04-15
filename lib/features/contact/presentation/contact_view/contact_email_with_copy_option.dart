@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:madmudmobile/localization/app_locale.dart';
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/utils/constants.dart';
+import 'package:tsirbunenpottery/localization/app_locale.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/utils/constants.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 const double descriptionFontSize = 12.0;

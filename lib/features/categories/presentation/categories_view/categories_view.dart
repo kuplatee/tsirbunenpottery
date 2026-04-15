@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_bloc.dart';
-import 'package:madmudmobile/core/state/language_bloc/language_state.dart';
-import 'package:madmudmobile/features/categories/domain/bloc/categories_bloc.dart';
-import 'package:madmudmobile/features/categories/domain/bloc/categories_state.dart';
-import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/bootstrap/router/routes.dart';
-import 'package:madmudmobile/widgets/items_grid/models.dart';
-import 'package:madmudmobile/widgets/items_grid/items_grid.dart';
-import 'package:madmudmobile/widgets/items_grid/scroll_position_mixin.dart';
-import 'package:madmudmobile/widgets/footer/footer.dart';
-import 'package:madmudmobile/widgets/bloc_status_view/bloc_status_view.dart';
-import 'package:madmudmobile/widgets/page_base/page_base.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_bloc.dart';
+import 'package:tsirbunenpottery/core/state/language_bloc/language_state.dart';
+import 'package:tsirbunenpottery/features/categories/domain/bloc/categories_bloc.dart';
+import 'package:tsirbunenpottery/features/categories/domain/bloc/categories_state.dart';
+import 'package:tsirbunenpottery/features/designs/domain/models/design/design.dart';
+import 'package:tsirbunenpottery/bootstrap/router/routes.dart';
+import 'package:tsirbunenpottery/widgets/items_grid/models.dart';
+import 'package:tsirbunenpottery/widgets/items_grid/items_grid.dart';
+import 'package:tsirbunenpottery/widgets/items_grid/scroll_position_mixin.dart';
+import 'package:tsirbunenpottery/widgets/footer/footer.dart';
+import 'package:tsirbunenpottery/widgets/bloc_status_view/bloc_status_view.dart';
+import 'package:tsirbunenpottery/widgets/page_base/page_base.dart';
 
 class CategoriesView extends StatefulWidget {
   final String? selectedCategoryId;

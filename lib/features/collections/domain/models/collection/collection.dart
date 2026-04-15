@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:madmudmobile/localization/languages.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
 
 part 'collection.freezed.dart';
 part 'collection.g.dart';

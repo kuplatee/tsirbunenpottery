@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:madmudmobile/localization/en.dart';
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/localization/translations.dart';
-import 'package:madmudmobile/localization/validate_translations.dart';
+import 'package:tsirbunenpottery/localization/en.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/localization/translations.dart';
+import 'package:tsirbunenpottery/localization/validate_translations.dart';
 import '../utils/barrel.dart';
 
 class MockTranslations implements Translations {

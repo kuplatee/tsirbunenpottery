@@ -1,6 +1,6 @@
-import 'package:madmudmobile/data/products_repository.dart';
-import 'package:madmudmobile/features/designs/domain/models/design/design.dart';
-import 'package:madmudmobile/features/pieces/domain/models/piece/piece.dart';
+import 'package:tsirbunenpottery/data/products_repository.dart';
+import 'package:tsirbunenpottery/features/designs/domain/models/design/design.dart';
+import 'package:tsirbunenpottery/features/pieces/domain/models/piece/piece.dart';
 
 typedef PiecesData = ({
   Map<String, Piece> piecesById,

@@ -1,4 +1,4 @@
-import 'package:madmudmobile/localization/languages.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
 
 const description_fi = '''
 Etsitkö kahvimukia, nuudelikulhoa tai salaattilautasta?

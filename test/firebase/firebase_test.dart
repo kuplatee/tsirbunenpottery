@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:madmudmobile/data/firestore_cloud_service.dart';
+import 'package:tsirbunenpottery/data/firestore_cloud_service.dart';
 import 'package:mockito/mockito.dart';
 import 'firebase_related_mocks.mocks.dart';
 

@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:madmudmobile/localization/en.dart';
-import 'package:madmudmobile/localization/fi.dart';
-import 'package:madmudmobile/localization/languages.dart';
-import 'package:madmudmobile/localization/translation.dart';
-import 'package:madmudmobile/widgets/action_button/action_button.dart';
-import 'package:madmudmobile/widgets/app_bar/app_bar_right_actions.dart';
+import 'package:tsirbunenpottery/localization/en.dart';
+import 'package:tsirbunenpottery/localization/fi.dart';
+import 'package:tsirbunenpottery/localization/languages.dart';
+import 'package:tsirbunenpottery/localization/translation.dart';
+import 'package:tsirbunenpottery/widgets/action_button/action_button.dart';
+import 'package:tsirbunenpottery/widgets/app_bar/app_bar_right_actions.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 const testKey = Translation.collections;

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:madmudmobile/data/products_repository.dart';
-import 'package:madmudmobile/features/categories/repository/categories_repository.dart';
+import 'package:tsirbunenpottery/data/products_repository.dart';
+import 'package:tsirbunenpottery/features/categories/repository/categories_repository.dart';
 
 import '../../utils/mock_cloud_service_helpers.dart';
 

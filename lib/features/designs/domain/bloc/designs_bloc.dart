@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
-import 'package:madmudmobile/features/designs/domain/bloc/designs_event.dart';
-import 'package:madmudmobile/features/designs/domain/bloc/designs_state.dart';
-import 'package:madmudmobile/features/designs/repository/designs_repository.dart';
+import 'package:tsirbunenpottery/core/types/bloc_status/bloc_status.dart';
+import 'package:tsirbunenpottery/features/designs/domain/bloc/designs_event.dart';
+import 'package:tsirbunenpottery/features/designs/domain/bloc/designs_state.dart';
+import 'package:tsirbunenpottery/features/designs/repository/designs_repository.dart';
 
 class DesignsBloc extends Bloc<DesignsEvent, DesignsState> {
   final DesignsRepository _repository;

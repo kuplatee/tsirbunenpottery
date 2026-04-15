@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:madmudmobile/features/pieces/presentation/single_piece_view/single_piece_view.dart';
+import 'package:tsirbunenpottery/features/pieces/presentation/single_piece_view/single_piece_view.dart';
 
 class SinglePiecePage extends StatelessWidget {
   final String id;

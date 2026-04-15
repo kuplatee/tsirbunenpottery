@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:madmudmobile/core/types/bloc_status/bloc_status.dart';
+import 'package:tsirbunenpottery/core/types/bloc_status/bloc_status.dart';
 
 class HomeState extends Equatable {
   final BlocStatus status;
